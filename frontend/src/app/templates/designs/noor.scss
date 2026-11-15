@@ -1,0 +1,108 @@
+@use '../base/mixins' as m;
+
+.t-noor {
+  $emerald: #0b5d4b;
+  $gold: #b8962e;
+
+  background: #fcfbf6;
+  color: #1f2a27;
+  font-family: m.$hind;
+  font-size: calc(13.5px * var(--bd-fs));
+
+  .band {
+    position: absolute;
+    right: 0;
+    left: 0;
+    height: 36px;
+    background-color: $emerald;
+    background-repeat: repeat;
+    background-size: 36px 36px;
+  }
+  .band.top {
+    top: 0;
+  }
+  .band.bottom {
+    bottom: 0;
+  }
+
+  .inner {
+    position: relative;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    min-height: 0;
+    padding: 64px 64px 62px;
+  }
+
+  .head {
+    display: flex;
+    flex: none;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 1.4em;
+  }
+  .who {
+    flex: 1;
+    min-width: 0;
+  }
+  bd-symbol {
+    font-size: 2.2em;
+  }
+  .bd-blessing {
+    margin-top: 0.2em;
+    color: $emerald;
+    font-weight: 600;
+  }
+  .title {
+    margin-top: 0.5em;
+    color: $gold;
+    font-family: m.$marcellus;
+    font-size: 1em;
+    letter-spacing: 0.42em;
+    text-transform: uppercase;
+  }
+  .rule {
+    width: 64px;
+    height: 2px;
+    margin: 0.5em 0 0.6em;
+    background: $gold;
+  }
+  .name {
+    color: $emerald;
+    font-family: m.$marcellus;
+    font-size: 2.5em;
+    line-height: 1.2;
+  }
+  .tag {
+    margin-top: 0.3em;
+    color: #5a6663;
+  }
+  .ph {
+    flex: none;
+    padding: 5px;
+    border: 1.5px solid $gold;
+    border-radius: 80px 80px 4px 4px;
+  }
+  .bd-photo {
+    width: 122px;
+    height: 160px;
+    border-radius: 76px 76px 2px 2px;
+  }
+
+  @include m.title-centered-rule(rgba($gold, 0.7), 1em);
+  .bd-sec-title {
+    color: $emerald;
+    font-family: m.$marcellus;
+    font-size: 1.1em;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+  }
+  .bd-row {
+    padding: 0.16em 0;
+  }
+  .bd-l {
+    flex-basis: 36%;
+    color: $emerald;
+    font-weight: 600;
+  }
+}

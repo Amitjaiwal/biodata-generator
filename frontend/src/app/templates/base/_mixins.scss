@@ -1,0 +1,139 @@
+// Shared font stacks and row/section mixins for biodata designs.
+// Every Latin face is paired with a Devanagari face so Hindi and Marathi render correctly.
+
+$sans: 'Inter', 'Noto Sans Devanagari', 'Noto Sans Gurmukhi', sans-serif;
+$poppins: 'Poppins', 'Noto Sans Devanagari', sans-serif;
+$mukta: 'Mukta', 'Noto Sans Devanagari', sans-serif;
+$hind: 'Hind', 'Noto Sans Devanagari', sans-serif;
+$baloo: 'Baloo 2', 'Noto Sans Devanagari', sans-serif;
+$serif: 'Lora', 'Noto Serif Devanagari', serif;
+$playfair: 'Playfair Display', 'Noto Serif Devanagari', serif;
+$cormorant: 'Cormorant Garamond', 'Noto Serif Devanagari', serif;
+$cinzel: 'Cinzel', 'Rozha One', 'Noto Serif Devanagari', serif;
+$marcellus: 'Marcellus', 'Noto Serif Devanagari', serif;
+$martel: 'Martel', 'Noto Serif Devanagari', serif;
+$tiro: 'Tiro Devanagari Marathi', 'Noto Serif Devanagari', serif;
+$laila: 'Laila', 'Noto Serif Devanagari', serif;
+$rozha: 'Rozha One', 'Noto Serif Devanagari', serif;
+
+// Label and value side by side: "Label : Value".
+@mixin rows-inline($label-width: 38%) {
+  .bd-row {
+    display: flex;
+    align-items: baseline;
+    gap: 0.6em;
+    padding: 0.17em 0;
+  }
+  .bd-l {
+    flex: 0 0 $label-width;
+  }
+  .bd-sep {
+    flex: none;
+  }
+  .bd-v {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+}
+
+// Label above value.
+@mixin rows-stacked {
+  .bd-row {
+    display: block;
+    padding: 0.28em 0;
+  }
+  .bd-l {
+    display: block;
+    font-size: 0.8em;
+  }
+  .bd-sep {
+    display: none;
+  }
+  .bd-v {
+    display: block;
+  }
+}
+
+// Rows laid out in a multi-column grid. Long rows span all columns.
+@mixin rows-grid($cols: 2, $gap: 1.6em) {
+  .bd-rows {
+    display: grid;
+    grid-template-columns: repeat($cols, minmax(0, 1fr));
+    column-gap: $gap;
+  }
+  .bd-row.bd-long {
+    grid-column: 1 / -1;
+  }
+}
+
+// Section title with a rule on both sides.
+@mixin title-centered-rule($color, $gap: 0.8em) {
+  .bd-sec-title {
+    display: flex;
+    align-items: center;
+    gap: $gap;
+    text-align: center;
+
+    &::before,
+    &::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: $color;
+    }
+  }
+}
+
+// Section title followed by a rule that fills the remaining width.
+@mixin title-trailing-rule($color) {
+  .bd-sec-title {
+    display: flex;
+    align-items: center;
+    gap: 0.8em;
+
+    &::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: $color;
+    }
+  }
+}
+
+// Absolutely positioned full-bleed layer.
+@mixin fill($inset: 0) {
+  position: absolute;
+  top: $inset;
+  right: $inset;
+  bottom: $inset;
+  left: $inset;
+}
+
+// Four corner ornaments. Expects <img class="corner tl|tr|bl|br">.
+@mixin corners($size, $offset) {
+  .corner {
+    position: absolute;
+    width: $size;
+    height: $size;
+    pointer-events: none;
+  }
+  .corner.tl {
+    top: $offset;
+    left: $offset;
+  }
+  .corner.tr {
+    top: $offset;
+    right: $offset;
+    transform: scaleX(-1);
+  }
+  .corner.bl {
+    bottom: $offset;
+    left: $offset;
+    transform: scaleY(-1);
+  }
+  .corner.br {
+    bottom: $offset;
+    right: $offset;
+    transform: scale(-1, -1);
+  }
+}

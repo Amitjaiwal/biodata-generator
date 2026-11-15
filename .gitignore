@@ -1,0 +1,23 @@
+# Dependencies and build output
+node_modules/
+dist/
+.angular/
+target/
+out-tsc/
+
+# Local environment and secrets
+.env
+.env.*
+!.env.example
+
+# Editor and tool files
+.idea/
+.vscode/*
+!.vscode/extensions.json
+*.iml
+.DS_Store
+Thumbs.db
+
+# Test artefacts
+shots/
+.playwright-mcp/

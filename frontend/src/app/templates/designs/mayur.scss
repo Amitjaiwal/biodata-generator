@@ -1,0 +1,148 @@
+@use '../base/mixins' as m;
+
+.t-mayur {
+  $teal: #0b6e6e;
+  $gold: #b8962e;
+  $line: #b9d8d6;
+
+  background: #fbfefd;
+  color: #17302f;
+  font-family: m.$hind;
+  font-size: calc(13.5px * var(--bd-fs));
+
+  .frame {
+    @include m.fill(18px);
+    border: 5px double $teal;
+  }
+
+  // Three feathers fanning out from a corner; stems meet at the corner point.
+  .fan {
+    position: absolute;
+    width: 0;
+    height: 0;
+  }
+  .fan.tr {
+    top: 30px;
+    right: 30px;
+    transform: rotate(180deg);
+  }
+  .f {
+    position: absolute;
+    bottom: 0;
+    left: -22px;
+    width: 42px;
+    height: 104px;
+    transform-origin: 50% 100%;
+  }
+  .f.a {
+    transform: rotate(14deg);
+  }
+  .f.b {
+    transform: rotate(45deg) scale(1.12);
+  }
+  .f.c {
+    transform: rotate(76deg);
+  }
+
+  .inner {
+    position: relative;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    min-height: 0;
+    padding: 56px 62px 58px;
+  }
+
+  .head {
+    display: flex;
+    flex: none;
+    align-items: center;
+    gap: 26px;
+    margin-bottom: 1.5em;
+    padding-right: 96px;
+  }
+  .ph {
+    flex: none;
+    padding: 4px;
+    border: 2px solid $teal;
+    background: #fff;
+  }
+  .bd-photo {
+    width: 112px;
+    height: 140px;
+  }
+  .who {
+    flex: 1;
+    min-width: 0;
+  }
+  .bless {
+    display: flex;
+    align-items: center;
+    gap: 0.6em;
+    color: $teal;
+    font-weight: 600;
+
+    bd-symbol {
+      font-size: 1.7em;
+    }
+  }
+  .title {
+    margin-top: 0.5em;
+    color: $gold;
+    font-size: 0.84em;
+    font-weight: 600;
+    letter-spacing: 0.36em;
+    text-transform: uppercase;
+  }
+  .name {
+    color: $teal;
+    font-family: m.$laila;
+    font-size: 2.3em;
+    font-weight: 700;
+    line-height: 1.25;
+  }
+  .tag {
+    color: #4d6665;
+    font-weight: 500;
+  }
+
+  .bd-sec {
+    margin-top: 1.15em;
+  }
+  .bd-sec-title {
+    margin: 0;
+    padding: 0.28em 0.9em 0.22em;
+    background: $teal;
+    color: #f6e7b4;
+    font-family: m.$laila;
+    font-size: 1em;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+  }
+  .bd-rows {
+    border: 1px solid $line;
+    border-top: 0;
+    background: #fff;
+  }
+  .bd-row {
+    align-items: stretch;
+    gap: 0;
+    padding: 0;
+    border-top: 1px solid $line;
+
+    &:first-child {
+      border-top: 0;
+    }
+  }
+  .bd-l {
+    flex-basis: 34%;
+    padding: 0.2em 0.9em;
+    border-right: 1px solid $line;
+    background: #eef7f6;
+    color: #24504f;
+    font-weight: 600;
+  }
+  .bd-v {
+    padding: 0.2em 0.9em;
+  }
+}

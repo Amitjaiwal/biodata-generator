@@ -1,0 +1,11 @@
+{
+  "name": "ShubhPatra Marriage Biodata Maker",
+  "short_name": "ShubhPatra",
+  "description": "Create a beautiful marriage biodata and download it as a PDF.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FBF7F2",
+  "theme_color": "#B3261E",
+  "lang": "en-IN",
+  "icons": [{ "src": "favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }]
+}

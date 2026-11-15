@@ -1,0 +1,119 @@
+@use '../base/mixins' as m;
+
+.t-kamal {
+  $pink: #b83b5e;
+  $gold: #c59b3b;
+  $bg: #fffbfa;
+
+  background: $bg;
+  color: #33222a;
+  font-family: m.$hind;
+  font-size: calc(13.5px * var(--bd-fs));
+
+  .water {
+    position: absolute;
+    right: -190px;
+    bottom: -190px;
+    width: 520px;
+    height: 520px;
+    opacity: 0.16;
+  }
+
+  .inner {
+    position: relative;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    min-height: 0;
+    padding: 34px 58px 44px;
+  }
+
+  .head {
+    flex: none;
+    margin-bottom: 1.2em;
+    text-align: center;
+  }
+  .bd-blessing {
+    color: $pink;
+    font-weight: 600;
+  }
+  .halo {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    margin: 0.2em auto 0;
+  }
+  .mand {
+    width: 150px;
+    height: 150px;
+  }
+  .bd-photo {
+    position: absolute;
+    top: 29px;
+    left: 29px;
+    width: 92px;
+    height: 92px;
+    border: 3px solid #fff;
+    border-radius: 50%;
+  }
+  .halo bd-symbol {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    font-size: 2.8em;
+  }
+  .name {
+    margin-top: 0.1em;
+    color: $pink;
+    font-family: m.$playfair;
+    font-size: 2.3em;
+    font-weight: 700;
+    line-height: 1.25;
+  }
+  .title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6em;
+    margin-top: 0.2em;
+    color: #8a6a2a;
+    font-weight: 500;
+  }
+  .lotus {
+    width: 26px;
+    height: 18px;
+  }
+
+  .bd-sec {
+    position: relative;
+    margin-top: 1.3em;
+    padding: 0.8em 1.3em 0.35em;
+    border: 1px solid #e9b9c6;
+    border-radius: 12px;
+  }
+  .bd-sec-title {
+    position: absolute;
+    top: -0.75em;
+    left: 1em;
+    margin: 0;
+    padding: 0 0.7em;
+    background: $bg;
+    color: $pink;
+    font-family: m.$playfair;
+    font-size: 1.05em;
+  }
+  @include m.rows-stacked;
+  @include m.rows-grid(2, 2em);
+  .bd-row {
+    padding: 0.1em 0;
+  }
+  .bd-l {
+    color: #a07a45;
+    font-weight: 500;
+  }
+  .bd-v {
+    font-weight: 500;
+  }
+}

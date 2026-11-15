@@ -1,0 +1,139 @@
+@use '../base/mixins' as m;
+
+.t-paithani {
+  $purple: #5b2a86;
+  $green: #2d6a4f;
+  $gold: #c4930f;
+
+  background: #fffdf7;
+  color: #2a2030;
+  font-family: m.$mukta;
+  font-size: calc(13.5px * var(--bd-fs));
+
+  .weave {
+    position: absolute;
+    background-color: $purple;
+    background-repeat: repeat;
+    background-size: 34px 34px;
+  }
+  .weave.left {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 34px;
+    border-right: 3px solid $gold;
+  }
+  .weave.top {
+    top: 0;
+    right: 0;
+    left: 34px;
+    height: 34px;
+    border-bottom: 3px solid $gold;
+  }
+
+  .inner {
+    position: relative;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    min-height: 0;
+    padding: 62px 58px 50px 86px;
+  }
+
+  .head {
+    display: flex;
+    flex: none;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 1.3em;
+  }
+  .who {
+    flex: 1;
+    min-width: 0;
+  }
+  .bd-blessing {
+    color: $green;
+    font-family: m.$tiro;
+    font-size: 1.05em;
+  }
+  .title {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    margin-top: 0.2em;
+    color: $purple;
+    font-family: m.$laila;
+    font-size: 1.3em;
+    font-weight: 700;
+
+    bd-symbol {
+      font-size: 1.2em;
+    }
+  }
+  .name {
+    margin-top: 0.15em;
+    color: $purple;
+    font-family: m.$rozha;
+    font-size: 2.6em;
+    line-height: 1.3;
+  }
+  .tag {
+    color: $green;
+    font-weight: 600;
+  }
+  .portrait {
+    position: relative;
+    flex: none;
+    min-width: 60px;
+    min-height: 120px;
+    padding-left: 54px;
+  }
+  .feather {
+    position: absolute;
+    bottom: 0;
+    width: 50px;
+    height: 125px;
+    transform-origin: 50% 100%;
+  }
+  .feather.f1 {
+    left: 16px;
+    transform: rotate(-22deg);
+  }
+  .feather.f2 {
+    left: 2px;
+    width: 40px;
+    height: 100px;
+    transform: rotate(-46deg);
+  }
+  .ph {
+    position: relative;
+    padding: 4px;
+    border: 2px solid $gold;
+    border-radius: 12px;
+    background: #fff;
+  }
+  .bd-photo {
+    width: 112px;
+    height: 140px;
+    border-radius: 8px;
+  }
+
+  .bd-sec-title {
+    margin-bottom: 0.4em;
+    padding: 0.15em 0 0.2em 0.7em;
+    border-bottom: 1px solid rgba($gold, 0.7);
+    border-left: 5px solid $green;
+    color: $purple;
+    font-family: m.$laila;
+    font-size: 1.08em;
+  }
+  .bd-row {
+    padding: 0.14em 0 0.14em 0.9em;
+    border-bottom: 1px dotted #d9cbe6;
+  }
+  .bd-l {
+    flex-basis: 33%;
+    color: #4a3a5a;
+    font-weight: 600;
+  }
+}

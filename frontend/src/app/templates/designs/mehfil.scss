@@ -1,0 +1,157 @@
+@use '../base/mixins' as m;
+
+.t-mehfil {
+  $teal: #0f4c5c;
+  $gold: #b8962e;
+  $light-gold: #e3c87a;
+
+  background: #fff;
+  color: #1c2b2f;
+  font-family: m.$sans;
+
+  .head {
+    position: relative;
+    display: flex;
+    flex: none;
+    align-items: center;
+    gap: 28px;
+    padding: 46px 56px 34px;
+    border-bottom: 4px solid $gold;
+    background: $teal;
+    color: #fff;
+
+    &.slim {
+      height: 34px;
+      padding: 0;
+    }
+  }
+  .lattice {
+    @include m.fill;
+    background-repeat: repeat;
+    background-size: 44px 44px;
+    opacity: 0.2;
+  }
+  .who {
+    position: relative;
+    flex: 1;
+    min-width: 0;
+  }
+  .bless {
+    display: flex;
+    align-items: center;
+    gap: 0.7em;
+    color: $light-gold;
+
+    bd-symbol {
+      font-size: 1.9em;
+    }
+  }
+  .name {
+    margin-top: 0.25em;
+    font-family: m.$marcellus;
+    font-size: 2.7em;
+    line-height: 1.2;
+  }
+  .tag {
+    margin-top: 0.3em;
+    color: rgba(255, 255, 255, 0.82);
+  }
+  .title {
+    display: inline-block;
+    margin-top: 1em;
+    padding: 0.3em 1.1em;
+    border: 1px solid $light-gold;
+    border-radius: 999px;
+    color: $light-gold;
+    font-size: 0.78em;
+    font-weight: 600;
+    letter-spacing: 0.34em;
+    text-transform: uppercase;
+  }
+  .ph {
+    position: relative;
+    flex: none;
+    margin-top: 22px;
+    padding: 0 6px 6px;
+    border: 1.5px solid $light-gold;
+    border-top: 0;
+  }
+  .foil {
+    position: absolute;
+    top: -31px;
+    left: -1.5px;
+    width: calc(100% + 3px);
+    height: 60px;
+  }
+  .bd-photo {
+    position: relative;
+    width: 118px;
+    height: 146px;
+    border-radius: 59px 59px 0 0;
+  }
+
+  .cols {
+    display: flex;
+    flex: 1;
+    min-height: 0;
+  }
+  .maincol {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    min-width: 0;
+    min-height: 0;
+    padding: 32px 32px 40px 56px;
+  }
+  .panel {
+    display: flex;
+    flex: 0 0 276px;
+    flex-direction: column;
+    min-height: 0;
+    padding: 32px 30px 40px;
+    background: #eef5f4;
+  }
+
+  .bd-sec {
+    margin-top: 1.5em;
+  }
+  .bd-sec-title {
+    display: flex;
+    align-items: center;
+    gap: 0.7em;
+    margin-bottom: 0.5em;
+    color: $teal;
+    font-family: m.$marcellus;
+    font-size: 1.15em;
+    font-weight: 400;
+
+    &::before {
+      content: '';
+      flex: none;
+      width: 0.55em;
+      height: 0.55em;
+      background: $gold;
+      transform: rotate(45deg);
+    }
+  }
+  .maincol .bd-row {
+    padding: 0.3em 0;
+    border-bottom: 1px solid #e6eeee;
+  }
+  .maincol .bd-l {
+    flex-basis: 40%;
+    color: #5d7378;
+  }
+  .maincol .bd-v {
+    font-weight: 500;
+  }
+  .panel {
+    @include m.rows-stacked;
+  }
+  .panel .bd-l {
+    color: #5d7378;
+  }
+  .panel .bd-v {
+    font-weight: 500;
+  }
+}

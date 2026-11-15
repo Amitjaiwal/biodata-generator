@@ -1,0 +1,111 @@
+@use '../base/mixins' as m;
+
+.t-sage {
+  $sage: #5f7161;
+
+  background: #fafaf5;
+  color: #2f332f;
+  font-family: m.$serif;
+
+  .pad {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    min-height: 0;
+    padding: 58px 62px 54px;
+  }
+
+  .head {
+    flex: none;
+    margin-bottom: 2em;
+    padding-bottom: 1.5em;
+    border-bottom: 1px solid #cfd6cc;
+    text-align: center;
+  }
+  .title {
+    color: $sage;
+    font-family: m.$sans;
+    font-size: 0.78em;
+    font-weight: 600;
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+  }
+  .name {
+    margin-top: 0.1em;
+    font-family: m.$cormorant;
+    font-size: 3.5em;
+    font-weight: 600;
+    line-height: 1.15;
+  }
+  .tag {
+    margin-top: 0.4em;
+    color: $sage;
+    font-style: italic;
+  }
+
+  .cols {
+    display: flex;
+    flex: 1;
+    gap: 34px;
+    min-height: 0;
+  }
+  .side {
+    display: flex;
+    flex: 0 0 196px;
+    flex-direction: column;
+    min-height: 0;
+    padding-right: 30px;
+    border-right: 1px solid #cfd6cc;
+  }
+  .bd-photo {
+    width: 166px;
+    height: 208px;
+    margin-bottom: 1.4em;
+  }
+  .bless {
+    flex: none;
+    margin-bottom: 1.6em;
+    text-align: center;
+
+    bd-symbol {
+      font-size: 2em;
+    }
+  }
+  .bd-blessing {
+    margin-top: 0.3em;
+    color: $sage;
+    font-size: 0.92em;
+    font-style: italic;
+  }
+
+  .bd-sec {
+    margin-top: 1.5em;
+  }
+  .bd-sec-title {
+    margin-bottom: 0.5em;
+    color: $sage;
+    font-family: m.$sans;
+    font-size: 0.76em;
+    font-weight: 700;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+  }
+  .side {
+    @include m.rows-stacked;
+  }
+  .side .bd-l {
+    color: #8a938a;
+    font-style: italic;
+  }
+  .bd-flow[data-flow='main'] {
+    .bd-row {
+      padding: 0.3em 0;
+      border-bottom: 1px solid #e6e9e2;
+    }
+    .bd-l {
+      flex-basis: 40%;
+      color: #747d74;
+      font-style: italic;
+    }
+  }
+}

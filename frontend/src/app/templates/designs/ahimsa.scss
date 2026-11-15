@@ -1,0 +1,115 @@
+@use '../base/mixins' as m;
+
+.t-ahimsa {
+  $saffron: #c2620a;
+  $brown: #4a2f12;
+
+  background: #fff;
+  color: #2e2217;
+  font-family: m.$mukta;
+  font-size: calc(13.5px * var(--bd-fs));
+
+  .head {
+    display: flex;
+    flex: none;
+    align-items: center;
+    gap: 26px;
+    padding: 40px 56px 30px;
+    border-bottom: 3px solid $saffron;
+    background: #fff2d8;
+  }
+  .strip {
+    flex: none;
+    height: 14px;
+    background: $saffron;
+  }
+  .ph {
+    flex: none;
+    padding: 4px;
+    border: 2px solid $saffron;
+    border-radius: 50%;
+    background: #fff;
+  }
+  .bd-photo {
+    width: 124px;
+    height: 124px;
+    border-radius: 50%;
+  }
+  .who {
+    flex: 1;
+    min-width: 0;
+  }
+  .title {
+    color: $saffron;
+    font-size: 0.85em;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+  }
+  .name {
+    color: $brown;
+    font-family: m.$laila;
+    font-size: 2.3em;
+    font-weight: 700;
+    line-height: 1.25;
+  }
+  .tag {
+    margin-top: 0.2em;
+    color: #7a5a3a;
+    font-weight: 500;
+  }
+  .bless {
+    flex: 0 0 150px;
+    text-align: center;
+
+    bd-symbol {
+      font-size: 3.4em;
+    }
+  }
+  .bd-blessing {
+    margin-top: 0.4em;
+    color: $brown;
+    font-size: 0.95em;
+    font-weight: 600;
+  }
+
+  .inner {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    min-height: 0;
+    padding: 30px 56px 26px;
+  }
+  .foot {
+    flex: none;
+    height: 10px;
+    background: $saffron;
+  }
+
+  .bd-sec {
+    margin-top: 1.2em;
+  }
+  .bd-sec-title {
+    margin-bottom: 0.3em;
+    color: $saffron;
+    font-family: m.$laila;
+    font-size: 1.08em;
+
+    span {
+      display: inline-block;
+      padding-bottom: 0.1em;
+      border-bottom: 2px solid $saffron;
+    }
+  }
+  .bd-row {
+    padding: 0.22em 0.9em;
+  }
+  .bd-row:nth-child(odd) {
+    background: #fff8ea;
+  }
+  .bd-l {
+    flex-basis: 36%;
+    color: #6b4a26;
+    font-weight: 600;
+  }
+}

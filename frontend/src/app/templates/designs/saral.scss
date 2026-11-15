@@ -1,0 +1,89 @@
+@use '../base/mixins' as m;
+
+.t-saral {
+  background: #fff;
+  color: #1a1a1a;
+  font-family: m.$poppins;
+
+  .pad {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    min-height: 0;
+    padding: 62px 68px 56px;
+  }
+
+  .head {
+    display: flex;
+    flex: none;
+    align-items: flex-end;
+    gap: 28px;
+    margin-bottom: 1.8em;
+    padding-bottom: 1.5em;
+    border-bottom: 2px solid #111;
+  }
+  .who {
+    flex: 1;
+    min-width: 0;
+  }
+  .kicker {
+    display: flex;
+    align-items: center;
+    gap: 0.7em;
+    color: #777;
+    font-size: 0.8em;
+    font-weight: 500;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+
+    bd-symbol {
+      font-size: 1.5em;
+      letter-spacing: 0;
+    }
+  }
+  .name {
+    margin-top: 0.1em;
+    font-size: 2.7em;
+    font-weight: 300;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+  }
+  .tag {
+    margin-top: 0.35em;
+    color: #444;
+    font-weight: 500;
+  }
+  .bd-blessing {
+    margin-top: 0.6em;
+    color: #999;
+    font-size: 0.85em;
+  }
+  .bd-photo {
+    width: 108px;
+    height: 135px;
+    border-radius: 6px;
+  }
+
+  .bd-sec {
+    margin-top: 1.5em;
+  }
+  @include m.title-trailing-rule(#d9d9d9);
+  .bd-sec-title {
+    margin-bottom: 0.55em;
+    font-size: 0.8em;
+    font-weight: 600;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+  }
+  @include m.rows-stacked;
+  @include m.rows-grid(2, 2.4em);
+  .bd-l {
+    color: #8a8a8a;
+    font-size: 0.74em;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .bd-v {
+    font-weight: 500;
+  }
+}

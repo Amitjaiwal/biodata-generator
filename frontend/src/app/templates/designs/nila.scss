@@ -1,0 +1,129 @@
+@use '../base/mixins' as m;
+
+.t-nila {
+  $navy: #14213d;
+  $amber: #fca311;
+
+  flex-direction: row;
+  background: #fff;
+  color: #1f2533;
+  font-family: m.$poppins;
+
+  .side {
+    display: flex;
+    flex: 0 0 262px;
+    flex-direction: column;
+    min-height: 0;
+    padding: 46px 28px 40px;
+    background: $navy;
+    color: #fff;
+  }
+  .ph {
+    align-self: center;
+    padding: 5px;
+    border: 3px solid $amber;
+    border-radius: 50%;
+  }
+  .bd-photo {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+  }
+  .name {
+    margin-top: 0.9em;
+    font-size: 1.65em;
+    font-weight: 600;
+    line-height: 1.25;
+    text-align: center;
+  }
+  .tag {
+    margin-top: 0.5em;
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 0.9em;
+    text-align: center;
+  }
+  .rule {
+    flex: none;
+    width: 44px;
+    height: 3px;
+    margin: 1.5em auto 1.7em;
+    background: $amber;
+  }
+
+  .side .bd-sec {
+    margin-top: 1.5em;
+  }
+  .side .bd-sec-title {
+    margin-bottom: 0.5em;
+    color: $amber;
+    font-size: 0.8em;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+  .side {
+    @include m.rows-stacked;
+  }
+  .side .bd-l {
+    color: rgba(255, 255, 255, 0.58);
+  }
+
+  .main {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    min-width: 0;
+    min-height: 0;
+    padding: 50px 46px 44px 42px;
+  }
+  .head {
+    display: flex;
+    flex: none;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 1.9em;
+    padding-bottom: 1.1em;
+    border-bottom: 1px solid #e3e6ee;
+
+    bd-symbol {
+      font-size: 2.6em;
+    }
+  }
+  .title {
+    color: $navy;
+    font-size: 2.1em;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    line-height: 1.2;
+    text-transform: uppercase;
+  }
+  .bd-blessing {
+    margin-top: 0.3em;
+    color: #7a8094;
+    font-size: 0.9em;
+  }
+
+  .main .bd-sec {
+    margin-top: 1.35em;
+  }
+  .main .bd-sec-title {
+    margin-bottom: 0.5em;
+    padding-left: 0.7em;
+    border-left: 4px solid $amber;
+    color: $navy;
+    font-size: 1.05em;
+    font-weight: 600;
+  }
+  .main .bd-row {
+    padding: 0.28em 0;
+    border-bottom: 1px solid #eef0f5;
+  }
+  .main .bd-l {
+    flex-basis: 40%;
+    color: #6b7285;
+  }
+  .main .bd-v {
+    font-weight: 500;
+  }
+}

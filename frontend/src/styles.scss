@@ -1,0 +1,258 @@
+@use '@angular/material' as mat;
+@use './styles/biodata-base';
+
+:root {
+  --sp-primary: #b3261e;
+  --sp-primary-dark: #8c1d18;
+  --sp-primary-soft: #fbeceb;
+  --sp-gold: #c9a227;
+  --sp-ink: #1f1a17;
+  --sp-muted: #6b625c;
+  --sp-bg: #fbf7f2;
+  --sp-surface: #ffffff;
+  --sp-border: #eadfd3;
+  --sp-success: #1b7f4b;
+  --sp-radius: 16px;
+  --sp-shadow: 0 1px 2px rgba(31, 26, 23, 0.05), 0 8px 24px rgba(31, 26, 23, 0.07);
+  --sp-shadow-lg: 0 2px 4px rgba(31, 26, 23, 0.06), 0 18px 48px rgba(31, 26, 23, 0.12);
+  --sp-font: 'Inter', 'Noto Sans Devanagari', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --sp-display: 'Fraunces', 'Noto Serif Devanagari', Georgia, serif;
+  --sp-header-h: 64px;
+}
+
+html {
+  color-scheme: light;
+  @include mat.theme(
+    (
+      color: (
+        primary: mat.$red-palette,
+        tertiary: mat.$orange-palette,
+        theme-type: light,
+      ),
+      typography: (
+        plain-family: var(--sp-font),
+        brand-family: var(--sp-font),
+      ),
+      density: 0,
+    )
+  );
+
+  // Brand overrides on top of the generated Material 3 tokens.
+  --mat-sys-primary: #b3261e;
+  --mat-sys-on-primary: #ffffff;
+  --mat-sys-primary-container: #fbeceb;
+  --mat-sys-on-primary-container: #5f1410;
+  --mat-sys-surface: #ffffff;
+  --mat-sys-background: #ffffff;
+  --mat-sys-surface-container: #faf5ef;
+  --mat-sys-surface-container-low: #fdfaf6;
+  --mat-sys-surface-container-high: #f5eee6;
+  --mat-sys-surface-container-highest: #f1e8de;
+  --mat-sys-outline: #a3978d;
+  --mat-sys-outline-variant: #e3d8cc;
+  --mat-sys-on-surface: #1f1a17;
+  --mat-sys-on-surface-variant: #5d544e;
+
+  scroll-behavior: smooth;
+  scroll-padding-top: 84px;
+  -webkit-text-size-adjust: 100%;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--sp-surface);
+  color: var(--sp-ink);
+  font-family: var(--sp-font);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  color: var(--sp-ink);
+  font-family: var(--sp-display);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  color: var(--sp-primary);
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+img {
+  max-width: 100%;
+}
+
+.container {
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.section {
+  padding: 72px 0;
+
+  @media (max-width: 720px) {
+    padding: 52px 0;
+  }
+}
+
+.section-alt {
+  background: var(--sp-bg);
+}
+
+.section-head {
+  max-width: 680px;
+  margin: 0 auto 40px;
+  text-align: center;
+
+  h2 {
+    font-size: clamp(1.7rem, 3.2vw, 2.4rem);
+  }
+
+  p {
+    margin-top: 12px;
+    color: var(--sp-muted);
+    font-size: 1.05rem;
+  }
+}
+
+.eyebrow {
+  display: inline-block;
+  margin-bottom: 10px;
+  color: var(--sp-primary);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.card {
+  border: 1px solid var(--sp-border);
+  border-radius: var(--sp-radius);
+  background: var(--sp-surface);
+  box-shadow: var(--sp-shadow);
+}
+
+.muted {
+  color: var(--sp-muted);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
+// Material tweaks shared across the app.
+.mat-mdc-button-base {
+  --mat-button-filled-container-shape: 999px;
+  --mat-button-outlined-container-shape: 999px;
+  --mat-button-text-container-shape: 999px;
+  --mat-button-tonal-container-shape: 999px;
+  letter-spacing: 0;
+}
+
+.btn-lg.mat-mdc-button-base {
+  height: 52px;
+  padding: 0 28px;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.mat-mdc-dialog-container {
+  --mat-dialog-container-shape: 20px;
+}
+
+.mat-mdc-snack-bar-container {
+  --mat-snack-bar-container-shape: 12px;
+}
+
+.prose {
+  max-width: 760px;
+  margin: 0 auto;
+
+  h1 {
+    margin-bottom: 8px;
+    font-size: clamp(1.9rem, 4vw, 2.6rem);
+  }
+
+  h2 {
+    margin: 36px 0 10px;
+    font-size: 1.35rem;
+  }
+
+  p,
+  li {
+    color: #3d3631;
+  }
+
+  p + p {
+    margin-top: 12px;
+  }
+
+  ul {
+    padding-left: 22px;
+  }
+}
+
+// Print: only the cloned biodata pages are visible (see PdfService.print).
+.sp-print-root {
+  display: none;
+}
+
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 0;
+  }
+
+  body.sp-printing {
+    background: #fff;
+
+    > *:not(.sp-print-root) {
+      display: none !important;
+    }
+
+    .sp-print-root {
+      display: block;
+    }
+
+    .sp-print-root > * {
+      margin: 0 !important;
+      box-shadow: none !important;
+      break-after: page;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+  }
+}
+
+// Compact form fields for the builder.
+.sp-dense {
+  @include mat.form-field-density(-2);
+}

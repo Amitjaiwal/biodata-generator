@@ -1,0 +1,137 @@
+@use '../base/mixins' as m;
+
+.t-metro {
+  $indigo: #3d348b;
+  $amber: #ffb703;
+
+  background: #fff;
+  color: #1e1b3a;
+  font-family: m.$poppins;
+
+  .head {
+    position: relative;
+    display: flex;
+    flex: none;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+    height: 196px;
+    padding: 44px 50px 0;
+    background: $indigo;
+    color: #fff;
+
+    &.slim {
+      height: 26px;
+      padding: 0;
+    }
+  }
+  .who {
+    min-width: 0;
+    max-width: 62%;
+  }
+  .title {
+    display: inline-block;
+    padding: 0.25em 0.9em;
+    border-radius: 999px;
+    background: $amber;
+    color: #2a2360;
+    font-size: 0.74em;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+  .name {
+    margin-top: 0.3em;
+    font-size: 2.35em;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+  .tag {
+    margin-top: 0.3em;
+    color: rgba(255, 255, 255, 0.8);
+  }
+  .bless {
+    display: flex;
+    flex: none;
+    align-items: center;
+    gap: 0.6em;
+    max-width: 34%;
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 0.86em;
+
+    bd-symbol {
+      font-size: 1.9em;
+    }
+  }
+  .ph {
+    position: absolute;
+    top: 96px;
+    right: 50px;
+    padding: 5px;
+    border-radius: 18px;
+    background: #fff;
+  }
+  .bd-photo {
+    width: 132px;
+    height: 165px;
+    border-radius: 14px;
+  }
+
+  .inner {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    min-height: 0;
+    padding: 26px 50px 44px;
+  }
+  .cols {
+    display: flex;
+    flex: 1;
+    gap: 16px;
+    min-height: 0;
+  }
+  .bd-flow[data-flow='main'] {
+    flex-grow: 1.4;
+  }
+  &.bd-first:not(.bd-no-photo) .bd-flow[data-flow='side'] {
+    margin-top: 62px;
+  }
+
+  .bd-sec {
+    margin-top: 14px;
+    padding: 1em 1.2em 0.8em;
+    border-radius: 14px;
+    background: #f4f4fb;
+  }
+  .bd-sec-title {
+    display: flex;
+    align-items: center;
+    gap: 0.6em;
+    margin-bottom: 0.5em;
+    color: $indigo;
+    font-size: 0.98em;
+    font-weight: 600;
+
+    &::before {
+      content: '';
+      flex: none;
+      width: 0.6em;
+      height: 0.6em;
+      border-radius: 50%;
+      background: $amber;
+    }
+  }
+  .bd-row {
+    padding: 0.2em 0;
+  }
+  .bd-l {
+    flex-basis: 42%;
+    color: #6f6c8f;
+  }
+  .bd-v {
+    font-weight: 500;
+  }
+  .bd-flow[data-flow='side'] {
+    @include m.rows-stacked;
+  }
+}

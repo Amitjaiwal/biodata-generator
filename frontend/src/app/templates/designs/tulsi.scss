@@ -1,0 +1,131 @@
+@use '../base/mixins' as m;
+
+.t-tulsi {
+  $green: #2f6b3f;
+
+  background: #fff;
+  color: #243026;
+  font-family: m.$sans;
+
+  .vine {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 30px;
+    background-repeat: repeat-y;
+    background-size: 30px 60px;
+  }
+  .vine.left {
+    left: 16px;
+  }
+  .vine.right {
+    right: 16px;
+    transform: scaleX(-1);
+  }
+
+  .inner {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    min-height: 0;
+    padding: 56px 78px 52px;
+  }
+
+  .head {
+    display: flex;
+    flex: none;
+    align-items: center;
+    gap: 40px;
+    margin-bottom: 2em;
+  }
+  .ph {
+    position: relative;
+    flex: none;
+    margin: 0 12px 12px 0;
+  }
+  .shade {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    width: 100%;
+    height: 100%;
+    border-radius: 16px;
+    background: #d5e8d4;
+  }
+  .bd-photo {
+    position: relative;
+    width: 140px;
+    height: 175px;
+    border-radius: 16px;
+  }
+  .who {
+    flex: 1;
+    min-width: 0;
+  }
+  .title {
+    color: $green;
+    font-size: 0.8em;
+    font-weight: 700;
+    letter-spacing: 0.34em;
+    text-transform: uppercase;
+  }
+  .name {
+    margin-top: 0.1em;
+    font-family: m.$serif;
+    font-size: 2.7em;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+  .tag {
+    margin-top: 0.4em;
+    color: #5b6b5d;
+    font-weight: 500;
+  }
+  .bless {
+    display: flex;
+    align-items: center;
+    gap: 0.6em;
+    margin-top: 1em;
+    padding-top: 0.9em;
+    border-top: 1px solid #d5e8d4;
+    color: $green;
+    font-weight: 500;
+
+    bd-symbol {
+      font-size: 1.6em;
+    }
+  }
+
+  .bd-sec {
+    margin-top: 1.4em;
+  }
+  .bd-sec-title {
+    display: flex;
+    align-items: center;
+    gap: 0.6em;
+    margin-bottom: 0.4em;
+    color: $green;
+    font-family: m.$serif;
+    font-size: 1.15em;
+
+    &::before {
+      content: '';
+      flex: none;
+      width: 0.75em;
+      height: 0.75em;
+      border-radius: 0 70% 0 70%;
+      background: #5e9b68;
+    }
+  }
+  .bd-row {
+    padding: 0.27em 0 0.27em 1.35em;
+    border-bottom: 1px solid #ebf2ea;
+  }
+  .bd-l {
+    flex-basis: 36%;
+    color: #6a7a6c;
+  }
+  .bd-v {
+    font-weight: 500;
+  }
+}

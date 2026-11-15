@@ -1,0 +1,121 @@
+@use '../base/mixins' as m;
+
+.t-samyak {
+  $gold: #a67c1a;
+  $ink: #33270f;
+
+  flex-direction: row;
+  border-top: 10px solid $gold;
+  background: #fff;
+  color: $ink;
+  font-family: m.$mukta;
+  font-size: calc(13.5px * var(--bd-fs));
+
+  .main {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    min-width: 0;
+    min-height: 0;
+    padding: 48px 40px 46px 58px;
+  }
+  .head {
+    flex: none;
+    margin-bottom: 1.6em;
+  }
+  .title {
+    color: $gold;
+    font-size: 0.82em;
+    font-weight: 700;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+  }
+  .name {
+    margin-top: 0.1em;
+    font-family: m.$marcellus;
+    font-size: 2.8em;
+    line-height: 1.2;
+  }
+  .tag {
+    margin-top: 0.3em;
+    color: #7a6a45;
+    font-weight: 500;
+  }
+  .lotus {
+    width: 46px;
+    height: 32px;
+    margin-top: 0.9em;
+  }
+
+  .side {
+    display: flex;
+    flex: 0 0 252px;
+    flex-direction: column;
+    min-height: 0;
+    padding: 44px 30px 46px;
+    border-left: 1px solid #e6d3a3;
+    background: #fbf3df;
+  }
+  .bless {
+    flex: none;
+    margin-bottom: 1.5em;
+    text-align: center;
+
+    bd-symbol {
+      font-size: 3em;
+    }
+  }
+  .bd-blessing {
+    margin-top: 0.4em;
+    color: $gold;
+    font-weight: 600;
+  }
+  .ph {
+    flex: none;
+    align-self: center;
+    margin-bottom: 1.8em;
+    padding: 5px;
+    border: 1.5px solid $gold;
+    border-radius: 90px 90px 6px 6px;
+    background: #fff;
+  }
+  .bd-photo {
+    width: 160px;
+    height: 200px;
+    border-radius: 84px 84px 3px 3px;
+  }
+
+  .bd-sec {
+    margin-top: 1.4em;
+  }
+  .bd-sec-title {
+    margin-bottom: 0.45em;
+    color: $gold;
+    font-family: m.$marcellus;
+    font-size: 1.2em;
+    font-weight: 400;
+  }
+  .main .bd-sec-title {
+    padding-bottom: 0.25em;
+    border-bottom: 1px solid #e6d3a3;
+  }
+  .main .bd-row {
+    padding: 0.2em 0;
+  }
+  .main .bd-l {
+    flex-basis: 38%;
+    color: #7a6a45;
+  }
+  .main .bd-v {
+    font-weight: 500;
+  }
+  .side {
+    @include m.rows-stacked;
+  }
+  .side .bd-l {
+    color: #8c7741;
+  }
+  .side .bd-v {
+    font-weight: 500;
+  }
+}
