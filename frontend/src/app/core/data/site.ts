@@ -1,7 +1,7 @@
 import { TemplateCategory } from '../models/template.model';
 
-/** Contact address shown on legal pages. Replace with your own before going live. */
-export const SUPPORT_EMAIL = 'support@shubhpatra.in';
+/** Support address shown on the legal and contact pages. */
+export const SUPPORT_EMAIL = 'marriagesbiodatamaker@gmail.com';
 
 /** Sections used on the legal pages. */
 export const LEGAL_UPDATED = '15 November 2026';

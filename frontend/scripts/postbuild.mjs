@@ -7,7 +7,7 @@ import { copyFileSync, existsSync, readdirSync, statSync, writeFileSync } from '
 import { join, relative, sep } from 'node:path';
 
 const outDir = join(import.meta.dirname, '..', 'dist', 'frontend', 'browser');
-const siteUrl = (process.env.SITE_URL || 'https://www.shubhpatra.in').replace(/\/+$/, '');
+const siteUrl = (process.env.SITE_URL || 'https://marriagesbiodatamaker.com').replace(/\/+$/, '');
 const EXCLUDE = [/^404$/];
 
 if (!existsSync(outDir)) {

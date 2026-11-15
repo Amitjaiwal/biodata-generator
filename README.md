@@ -88,7 +88,7 @@ Deploy `frontend/` to Netlify (`netlify.toml`), Cloudflare (`wrangler.jsonc`) or
 
 ### Before going live
 
-- Replace the placeholder domain `www.shubhpatra.in` and the support address in `frontend/src/app/core/data/site.ts` with your own. Check that the brand name and domain are available to you.
+- The site address is set to `https://marriagesbiodatamaker.com` in `frontend/src/environments/environment.production.ts`, `frontend/scripts/postbuild.mjs` and `backend/.env.example`. The support email is in `frontend/src/app/core/data/site.ts`. Change them there if either ever changes.
 - Have the privacy, terms and refund pages reviewed for your business. Razorpay requires these pages during onboarding.
 - Submit `https://YOUR-DOMAIN/sitemap.xml` in Google Search Console.
 

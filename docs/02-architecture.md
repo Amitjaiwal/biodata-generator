@@ -2,7 +2,7 @@
 
 ## 1. Branding
 
-- **Name:** ShubhPatra (शुभपत्र). Shubh = auspicious, Patra = document/letter. Short, pronounceable in all Indian languages, available as `shubhpatra.in` style domain.
+- **Name:** ShubhPatra (शुभपत्र). Shubh = auspicious, Patra = document/letter. Short, pronounceable in all Indian languages.
 - **Tagline:** Beautiful marriage biodata in minutes.
 - **Logo:** Wordmark "Shubh**Patra**" with a small kalash/lotus mark in saffron-gold inside a rounded square.
 - **Palette (UI, not templates):**
