@@ -1,0 +1,14 @@
+// Cloudflare Workers static-assets deployment for the website.
+// Cloudflare build settings: root directory "frontend", build command "npm run build",
+// deploy command "npx wrangler deploy".
+{
+  "name": "biodata-generator",
+  "compatibility_date": "2026-01-01",
+  "assets": {
+    "directory": "./dist/frontend/browser",
+    // Unknown addresses get 404.html (the app shell) with a 404 status.
+    "not_found_handling": "404-page",
+    // Serve templates/index.html at /templates (no trailing slash), matching the canonical URLs.
+    "html_handling": "drop-trailing-slash"
+  }
+}

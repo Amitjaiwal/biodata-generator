@@ -4,6 +4,9 @@
 spring:
   application:
     name: shubhpatra-backend
+  config:
+    # Local secrets: an optional backend/.env file (KEY=value lines, never committed).
+    import: optional:file:.env[.properties]
   profiles:
     # Local runs use the "dev" profile (in-memory H2, demo payments). Production sets SPRING_PROFILES_ACTIVE=prod.
     default: dev

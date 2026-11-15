@@ -2,11 +2,14 @@ import { RenderMode, ServerRoute } from '@angular/ssr';
 import { TEMPLATE_CATEGORIES } from './core/models/template.model';
 
 /**
- * Marketing pages are prerendered to static HTML for search engines. The builder works on
- * private data held in the browser, so it is rendered on the client only.
+ * Every page is prerendered to a static HTML file, so the site works on any static host
+ * (Netlify, Cloudflare, Vercel) without rewrite rules.
+ *
+ * The builder page is prerendered as an empty shell. The visitor's saved biodata is read from
+ * their browser only after the page loads, so no personal data is ever part of the build.
+ * Unknown addresses are served the client-rendered shell as 404.html (see scripts/postbuild.mjs).
  */
 export const serverRoutes: ServerRoute[] = [
-  { path: 'create', renderMode: RenderMode.Client },
   {
     path: 'templates/:category',
     renderMode: RenderMode.Prerender,

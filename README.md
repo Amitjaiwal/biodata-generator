@@ -77,9 +77,12 @@ Deploy `backend/` to any Java or Docker host (Render, Railway, Fly.io). A `Docke
 In the Razorpay dashboard add a webhook pointing to `https://YOUR-BACKEND-HOST/api/payments/webhook` for the events `payment.captured` and `order.paid`, and use the same secret as `RAZORPAY_WEBHOOK_SECRET`.
 
 ### 3. Frontend
-Deploy `frontend/` to Vercel (`vercel.json`) or Netlify (`netlify.toml`). Both files are included.
+Deploy `frontend/` to Netlify (`netlify.toml`), Cloudflare (`wrangler.jsonc`) or Vercel (`vercel.json`). All three files are included. Every page is a prerendered file and unknown addresses get `404.html`, so no rewrite rules are needed for pages.
 
-1. Replace `YOUR-BACKEND-HOST` in the config file. The site calls `/api/...` on its own domain and the host forwards it to the backend, so no CORS setup is needed.
+- **Netlify:** set the base directory to `frontend`.
+- **Cloudflare Workers:** root directory `frontend`, build command `npm run build`, deploy command `npx wrangler deploy`, variable `NODE_VERSION=22`.
+
+1. Set the backend address in the `/api` rule of the config file (commented out in `netlify.toml` until the backend exists). Cloudflare Workers has no equivalent rule, so a small proxy is needed there. The site calls `/api/...` on its own domain and the host forwards it to the backend, so no CORS setup is needed.
 2. Set your domain in `frontend/src/environments/environment.production.ts` (`siteUrl`) and pass the same value as the `SITE_URL` build variable so the sitemap uses it.
 3. Build command: `npm run build`. Output: `dist/frontend/browser`.
 

@@ -1,7 +1,9 @@
-// Writes sitemap.xml and robots.txt into the build output.
+// Writes sitemap.xml, robots.txt and 404.html into the build output.
 // The sitemap is derived from the prerendered pages, so it only ever lists URLs that exist.
+// 404.html is the client-rendered app shell: static hosts serve it, with a 404 status, for any
+// unknown address, and the app then shows its own "Page not found" page.
 // Usage: SITE_URL=https://www.example.com node scripts/postbuild.mjs
-import { existsSync, readdirSync, statSync, writeFileSync } from 'node:fs';
+import { copyFileSync, existsSync, readdirSync, statSync, writeFileSync } from 'node:fs';
 import { join, relative, sep } from 'node:path';
 
 const outDir = join(import.meta.dirname, '..', 'dist', 'frontend', 'browser');
@@ -40,4 +42,11 @@ writeFileSync(
   join(outDir, 'robots.txt'),
   `User-agent: *\nAllow: /\nDisallow: /api/\n\nSitemap: ${siteUrl}/sitemap.xml\n`,
 );
-console.log(`sitemap.xml: ${routes.length} URLs for ${siteUrl}`);
+const shell = join(outDir, 'index.csr.html');
+if (!existsSync(shell)) {
+  console.error('index.csr.html not found: cannot create 404.html');
+  process.exit(1);
+}
+copyFileSync(shell, join(outDir, '404.html'));
+
+console.log(`sitemap.xml: ${routes.length} URLs for ${siteUrl}; 404.html written`);
