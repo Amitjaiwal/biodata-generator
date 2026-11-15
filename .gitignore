@@ -21,3 +21,6 @@ Thumbs.db
 # Test artefacts
 shots/
 .playwright-mcp/
+
+# Cloudflare local dev state
+.wrangler/
