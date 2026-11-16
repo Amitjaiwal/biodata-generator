@@ -68,6 +68,8 @@ APP_VALIDITY_DAYS=365
 
 ## Deploy
 
+A step-by-step guide with a troubleshooting table is in [docs/03-deployment.md](docs/03-deployment.md). The short version follows.
+
 ### 1. Database
 Create a managed PostgreSQL database (Neon, Supabase and Railway all have free or low-cost tiers). Flyway creates the table on first start.
 

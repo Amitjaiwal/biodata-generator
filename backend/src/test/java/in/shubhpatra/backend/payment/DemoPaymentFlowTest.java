@@ -17,7 +17,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import tools.jackson.databind.json.JsonMapper;
 
 /** End-to-end API flow with simulated payments (dev profile, in-memory database). */
-@SpringBootTest(properties = "app.rate-limit.requests-per-minute=1000")
+// Blank Razorpay keys keep this test independent of any local backend/.env file.
+@SpringBootTest(properties = { "app.rate-limit.requests-per-minute=1000", "app.razorpay.key-id=", "app.razorpay.key-secret=", "app.razorpay.webhook-secret=" })
 @AutoConfigureMockMvc
 @ActiveProfiles("dev")
 class DemoPaymentFlowTest {
