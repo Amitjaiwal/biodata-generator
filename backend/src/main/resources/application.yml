@@ -44,7 +44,7 @@ app:
     premium-collection-amount: ${APP_PRICE_PREMIUM_COLLECTION:9900}
     validity-days: ${APP_VALIDITY_DAYS:365}
     # Template ids that may be bought individually. Keep in step with the frontend registry.
-    premium-templates: maharaja,paithani,rajwada,mehfil,kamal,monogram,metro,tulsi,vivah,ivory,mayur,samyak
+    premium-templates: maharaja,paithani,rajwada,mehfil,kamal,monogram,metro,tulsi,vivah,ivory,mayur,samyak,zarika,rani,neelmahal,nishan,blush
   razorpay:
     key-id: ${RAZORPAY_KEY_ID:}
     key-secret: ${RAZORPAY_KEY_SECRET:}

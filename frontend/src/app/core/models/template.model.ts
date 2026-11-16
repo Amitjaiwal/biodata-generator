@@ -5,31 +5,42 @@ export type TemplateCategory =
   | 'traditional'
   | 'modern'
   | 'royal'
+  | 'gold'
   | 'minimal'
   | 'floral'
   | 'elegant'
   | 'hindu'
   | 'muslim'
+  | 'sikh'
+  | 'christian'
   | 'jain'
-  | 'marathi';
+  | 'marathi'
+  | 'bride'
+  | 'groom';
 
+/** Order used for the category chips in the gallery. */
 export const TEMPLATE_CATEGORIES: readonly TemplateCategory[] = [
-  'traditional',
-  'modern',
   'royal',
+  'gold',
+  'traditional',
+  'hindu',
+  'marathi',
+  'muslim',
+  'sikh',
+  'christian',
+  'jain',
+  'modern',
   'minimal',
   'floral',
   'elegant',
-  'hindu',
-  'muslim',
-  'jain',
-  'marathi',
+  'bride',
+  'groom',
 ];
 
 export type TemplateTier = 'free' | 'premium';
 
 /** Sample profiles used for thumbnails. Each persona is written in its own language. */
-export type SamplePersona = 'hindu' | 'marathi' | 'hindi' | 'muslim' | 'jain';
+export type SamplePersona = 'hindu' | 'marathi' | 'hindi' | 'muslim' | 'jain' | 'sikh' | 'christian' | 'groom';
 
 export interface TemplateDefinition {
   id: string;
@@ -43,5 +54,7 @@ export interface TemplateDefinition {
   /** Which sample profile to show in thumbnails. */
   sample: SamplePersona;
   featured?: boolean;
+  /** True for designs added in the latest release, shown with a New badge. */
+  isNew?: boolean;
   component: Type<unknown>;
 }

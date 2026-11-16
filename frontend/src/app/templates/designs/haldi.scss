@@ -1,0 +1,138 @@
+@use '../base/mixins' as m;
+
+.t-haldi {
+  $maroon: #7c2d12;
+  $orange: #c2410c;
+  $saffron: #fbbf24;
+
+  background: linear-gradient(180deg, #fde68a 0%, #fcd34d 100%);
+  color: #3b1d0e;
+  font-family: m.$mukta;
+  font-size: calc(13.5px * var(--bd-fs));
+
+  .garland {
+    flex: none;
+    height: 58px;
+    background-repeat: repeat-x;
+    background-size: 46px 58px;
+
+    &.low {
+      height: 22px;
+      margin-top: -2px;
+      transform: scaleY(-1);
+      background-size: 46px 58px;
+      background-position: 0 100%;
+      opacity: 0.9;
+    }
+  }
+
+  .leafbg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 794px;
+    height: 1123px;
+  }
+  .leaf {
+    position: relative;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    min-height: 0;
+    margin: 6px 34px 0;
+    padding: 30px 40px 24px;
+  }
+
+  .head {
+    display: flex;
+    flex: none;
+    align-items: center;
+    gap: 26px;
+    margin-bottom: 0.8em;
+    padding-bottom: 1.1em;
+    border-bottom: 1.5px dashed rgba($orange, 0.55);
+  }
+  .arch {
+    flex: none;
+    padding: 5px;
+    border: 2px solid $orange;
+    border-radius: 80px 80px 8px 8px;
+  }
+  .bd-photo {
+    width: 120px;
+    height: 150px;
+    border-radius: 75px 75px 4px 4px;
+  }
+  .who {
+    flex: 1;
+    min-width: 0;
+  }
+  .bless {
+    display: flex;
+    align-items: center;
+    gap: 0.6em;
+    color: $orange;
+    font-weight: 600;
+
+    bd-symbol {
+      font-size: 1.5em;
+    }
+  }
+  .title {
+    margin-top: 0.5em;
+    color: $maroon;
+    font-family: m.$rozha;
+    font-size: 1.5em;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  .name {
+    margin-top: 0.15em;
+    color: #1f0d05;
+    font-family: m.$playfair;
+    font-size: 2.1em;
+    font-weight: 700;
+    line-height: 1.25;
+  }
+  .tag {
+    color: $orange;
+    font-weight: 500;
+  }
+
+  .cols {
+    display: flex;
+    flex: 1;
+    gap: 28px;
+    min-height: 0;
+  }
+  .bd-flow[data-flow='side'] {
+    @include m.rows-stacked;
+    flex: 0 0 33%;
+    padding-left: 24px;
+    border-left: 1.5px dashed rgba($orange, 0.5);
+  }
+  .bd-sec {
+    margin-top: 1.1em;
+  }
+  .bd-sec-title {
+    display: inline-block;
+    margin-bottom: 0.45em;
+    padding: 0.15em 0.9em;
+    border-radius: 999px;
+    background: $maroon;
+    color: #fde68a;
+    font-size: 0.9em;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+  .bd-row {
+    padding: 0.18em 0;
+  }
+  .bd-l {
+    flex-basis: 40%;
+    color: #92400e;
+  }
+  .bd-v {
+    font-weight: 600;
+  }
+}

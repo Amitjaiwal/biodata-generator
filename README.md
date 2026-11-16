@@ -1,6 +1,6 @@
 # ShubhPatra: Indian Marriage Biodata Maker
 
-Create a marriage biodata online, preview it live in 20 original designs, and download an A4 PDF in English, Hindi or Marathi. Free templates need no payment; premium templates are unlocked with a one-time Razorpay payment.
+Create a marriage biodata online, preview it live in 28 original designs, and download an A4 PDF in English, Hindi or Marathi. Free templates need no payment; premium templates are unlocked with a one-time Razorpay payment.
 
 | Part | Stack | Folder |
 |---|---|---|
@@ -48,9 +48,11 @@ cd backend && ./mvnw test                  # token signing, payment verification
 - `biodata/form/` is the only form. It renders sections and fields from the model and knows nothing about templates.
 - `biodata/render/render-model.ts` turns the biodata into a template-agnostic render model: hidden sections and empty fields removed, labels localized, values formatted. User-typed text is never translated.
 - `biodata/preview/preview-engine.ts` measures the content, splits it into A4 pages and renders them. The same DOM is used for the on-screen preview and for the PDF.
-- `templates/designs/` holds the 20 designs. Each is one small component plus one stylesheet. `templates/registry.ts` is the catalogue.
+- `templates/designs/` holds the 28 designs. Each is one small component plus one stylesheet. `templates/registry.ts` is the catalogue.
 
-**To add a design:** copy a file pair in `templates/designs/`, change the markup and styles, and add one entry to `templates/registry.ts`. If it is premium, also add its id to `app.pricing.premium-templates` in `backend/src/main/resources/application.yml`.
+**To add a design:** copy a file pair in `templates/designs/`, change the markup and styles, and add one entry to `templates/registry.ts`. If it is premium, also add its id to `app.pricing.premium-templates` in `backend/src/main/resources/application.yml`. A backend test (`PremiumTemplatesInSyncTest`) fails if the two lists drift apart.
+
+**PDF-safe styling.** The PDF is drawn by html2canvas, which cannot paint `box-shadow`, `clip-path`, conic gradients, filters or masks, and a global class such as `.card` leaks into designs. Build frames, ribbons and shaped photos from borders, plain backgrounds and SVG images (see `templates/base/ornaments-extra.ts`), and check a new design in the PDF output with a real JPEG photo before shipping it.
 
 **Privacy.** Biodata details and photos stay in the browser (localStorage). The PDF is generated on the device. The backend stores only payment references.
 

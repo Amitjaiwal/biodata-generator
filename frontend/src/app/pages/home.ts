@@ -12,7 +12,7 @@ import { FaqList, faqItems } from '../shared/faq-list';
 import { PricingCards } from '../shared/pricing-cards';
 import { TemplateCard } from '../shared/template-card';
 import { TemplateThumb } from '../shared/template-thumb';
-import { TEMPLATES, findTemplate } from '../templates/registry';
+import { TEMPLATES, findTemplate, templatesIn } from '../templates/registry';
 
 @Component({
   selector: 'app-home',
@@ -36,9 +36,9 @@ import { TEMPLATES, findTemplate } from '../templates/registry';
           </ul>
         </div>
         <div class="stack" aria-hidden="true">
-          <app-template-thumb class="sheet s1" [def]="hero[0]" />
-          <app-template-thumb class="sheet s2" [def]="hero[1]" />
-          <app-template-thumb class="sheet s3" [def]="hero[2]" />
+          <app-template-thumb class="sheet s1" [def]="hero[0]" [lazy]="false" />
+          <app-template-thumb class="sheet s2" [def]="hero[1]" [lazy]="false" />
+          <app-template-thumb class="sheet s3" [def]="hero[2]" [lazy]="false" />
         </div>
       </div>
     </section>
@@ -72,7 +72,29 @@ import { TEMPLATES, findTemplate } from '../templates/registry';
       </div>
     </section>
 
-    <section class="section section-alt" id="how-it-works">
+    <section class="section section-alt" id="communities">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">{{ t('home.comm.eyebrow') }}</span>
+          <h2>{{ t('home.comm.title') }}</h2>
+          <p>{{ t('home.comm.sub') }}</p>
+        </div>
+        <div class="comm-grid">
+          @for (c of communities; track c.cat) {
+            <a class="comm" [routerLink]="['/templates', c.cat]">
+              <app-template-thumb class="comm-thumb" [def]="c.def" />
+              <span class="comm-text">
+                <strong>{{ t('cat.' + c.cat) }}</strong>
+                <span>{{ t('home.comm.' + c.cat) }}</span>
+                <em>{{ t('home.comm.cta') }}<mat-icon>arrow_forward</mat-icon></em>
+              </span>
+            </a>
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="how-it-works">
       <div class="container">
         <div class="section-head">
           <span class="eyebrow">{{ t('home.how.eyebrow') }}</span>
@@ -91,7 +113,7 @@ import { TEMPLATES, findTemplate } from '../templates/registry';
       </div>
     </section>
 
-    <section class="section" id="features">
+    <section class="section section-alt" id="features">
       <div class="container">
         <div class="section-head">
           <span class="eyebrow">{{ t('home.features.eyebrow') }}</span>
@@ -105,6 +127,25 @@ import { TEMPLATES, findTemplate } from '../templates/registry';
                 <h3>{{ t('home.f' + f.n + '.t') }}</h3>
                 <p>{{ t('home.f' + f.n + '.d') }}</p>
               </div>
+            </div>
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="trust-band" id="trust">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">{{ t('home.trust.eyebrow') }}</span>
+          <h2>{{ t('home.trust.title') }}</h2>
+          <p>{{ t('home.trust.sub') }}</p>
+        </div>
+        <div class="trust-grid">
+          @for (x of trustItems; track x.n) {
+            <div class="trust-item">
+              <span class="icon"><mat-icon>{{ x.icon }}</mat-icon></span>
+              <h3>{{ t('home.trust.' + x.n + '.t') }}</h3>
+              <p>{{ t('home.trust.' + x.n + '.d') }}</p>
             </div>
           }
         </div>
@@ -423,6 +464,113 @@ import { TEMPLATES, findTemplate } from '../templates/registry';
         width: 100%;
       }
     }
+    .comm-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+    }
+    .comm {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px;
+      border: 1px solid var(--sp-border);
+      border-radius: var(--sp-radius);
+      background: #fff;
+      color: var(--sp-ink);
+      text-decoration: none;
+      transition:
+        border-color 0.15s ease,
+        transform 0.15s ease;
+    }
+    .comm:hover {
+      border-color: var(--sp-primary);
+      transform: translateY(-2px);
+    }
+    .comm-thumb {
+      flex: none;
+      width: 68px;
+      overflow: hidden;
+      border-radius: 4px;
+      box-shadow: 0 1px 4px rgba(31, 26, 23, 0.25);
+    }
+    .comm-text {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+      font-size: 0.85rem;
+    }
+    .comm-text strong {
+      font-size: 1rem;
+    }
+    .comm-text > span {
+      color: var(--sp-muted);
+    }
+    .comm-text em {
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+      margin-top: 4px;
+      color: var(--sp-primary);
+      font-style: normal;
+      font-weight: 600;
+    }
+    .comm-text em mat-icon {
+      width: 16px;
+      height: 16px;
+      font-size: 16px;
+    }
+    .trust-band {
+      padding: 72px 0;
+    }
+    .trust-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 22px;
+    }
+    .trust-item {
+      padding: 22px 20px;
+      border: 1px solid var(--sp-border);
+      border-radius: var(--sp-radius);
+      background: var(--sp-bg);
+    }
+    .trust-item .icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: var(--sp-primary-soft);
+      color: var(--sp-primary);
+    }
+    .trust-item h3 {
+      margin-top: 14px;
+      font-family: var(--sp-font);
+      font-size: 1.02rem;
+      font-weight: 600;
+    }
+    .trust-item p {
+      margin-top: 6px;
+      color: var(--sp-muted);
+      font-size: 0.92rem;
+    }
+    @media (max-width: 1000px) {
+      .comm-grid,
+      .trust-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+    @media (max-width: 620px) {
+      .comm-grid,
+      .trust-grid {
+        grid-template-columns: 1fr;
+      }
+      .trust-band {
+        padding: 48px 0;
+      }
+    }
   `,
 })
 export class Home {
@@ -432,8 +580,18 @@ export class Home {
 
   protected readonly total = TEMPLATES.length;
   protected readonly free = TEMPLATES.filter((x) => x.tier === 'free').length;
-  protected readonly featured = TEMPLATES.filter((x) => x.featured).slice(0, 8);
-  protected readonly hero = [findTemplate('paithani'), findTemplate('nila'), findTemplate('maharaja')];
+  /** A hand-picked mix for the home page: gold, marigold, magenta, Sikh, bride, groom, Marathi and classic Hindu. */
+  protected readonly featured = ['zarika', 'haldi', 'rani', 'nishan', 'blush', 'dapper', 'paithani', 'mangal'].map(findTemplate);
+  protected readonly hero = [findTemplate('haldi'), findTemplate('neelmahal'), findTemplate('zarika')];
+  protected readonly communities = (
+    ['hindu', 'marathi', 'muslim', 'sikh', 'christian', 'jain', 'bride', 'groom'] as const
+  ).map((cat) => ({ cat, def: templatesIn(cat)[0] }));
+  protected readonly trustItems = [
+    { n: 1, icon: 'devices' },
+    { n: 2, icon: 'no_accounts' },
+    { n: 3, icon: 'verified_user' },
+    { n: 4, icon: 'print' },
+  ];
   protected readonly steps = [
     { n: 1, icon: 'grid_view' },
     { n: 2, icon: 'edit_note' },
@@ -458,7 +616,7 @@ export class Home {
       seo.set({
         title: 'Marriage Biodata Maker Online | Free Templates and PDF Download | ShubhPatra',
         description:
-          'Create your marriage biodata online in minutes. 20 original designs for Hindu, Muslim, Jain and Marathi families, live preview, and PDF download in English, Hindi and Marathi.',
+          `Create your marriage biodata online in minutes. ${TEMPLATES.length} original designs for Hindu, Marathi, Muslim, Sikh, Christian and Jain families, live preview, and PDF download in English, Hindi and Marathi.`,
         path: '/',
         jsonLd: [
           {
@@ -502,6 +660,11 @@ export class Home {
 
   protected async preview(def: TemplateDefinition): Promise<void> {
     const { TemplatePreviewDialog } = await import('../shared/template-preview-dialog');
-    this.dialog.open(TemplatePreviewDialog, { data: def, width: '640px', maxWidth: '96vw', autoFocus: 'dialog' });
+    this.dialog.open(TemplatePreviewDialog, {
+      data: { def, list: this.featured },
+      width: '640px',
+      maxWidth: '96vw',
+      autoFocus: 'dialog',
+    });
   }
 }

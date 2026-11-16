@@ -75,4 +75,34 @@ export const CATEGORY_SEO: Record<TemplateCategory, CategorySeo> = {
     description:
       'Marathi lagna biodata formats with toran, paithani borders and Marathi headings. Make a biodata in Marathi and download the PDF.',
   },
+  gold: {
+    h1: 'Premium Gold Marriage Biodata Templates',
+    title: 'Premium Gold Marriage Biodata Templates | ShubhPatra',
+    description:
+      'Luxury marriage biodata designs with gold-foil frames, rich colours and refined typography. Preview with your own details and download a print-ready A4 PDF.',
+  },
+  sikh: {
+    h1: 'Sikh Marriage Biodata Templates',
+    title: 'Sikh Marriage Biodata Maker and Format | ShubhPatra',
+    description:
+      'Sikh marriage biodata (anand karaj) formats with the Ik Onkar heading and saffron and blue colours. Fill your details and download a PDF online.',
+  },
+  christian: {
+    h1: 'Christian Marriage Biodata Templates',
+    title: 'Christian Marriage Biodata Maker and Format | ShubhPatra',
+    description:
+      'Christian marriage biodata formats with a cross symbol, soft colours and clean layouts. Create a matrimonial biodata online and download the PDF.',
+  },
+  bride: {
+    h1: 'Modern Bride Biodata Templates',
+    title: 'Biodata Format for Girl: Modern Bride Biodata Templates | ShubhPatra',
+    description:
+      'Modern marriage biodata designs for girls with soft colours and card layouts. Add your photo, family and career details and download a print-ready PDF.',
+  },
+  groom: {
+    h1: 'Modern Groom Biodata Templates',
+    title: 'Biodata Format for Boy: Modern Groom Biodata Templates | ShubhPatra',
+    description:
+      'Modern marriage biodata designs for boys with bold headings and a clear layout. Add your photo, education, family and career details and download a PDF.',
+  },
 };

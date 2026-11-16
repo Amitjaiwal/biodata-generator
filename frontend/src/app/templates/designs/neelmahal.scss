@@ -1,0 +1,146 @@
+@use '../base/mixins' as m;
+
+.t-neelmahal {
+  $blue: #12306b;
+  $gold: #c9a227;
+  $ivory: #fbf6e8;
+
+  background: $blue;
+  color: #1b2a4a;
+  font-family: m.$serif;
+  font-size: calc(13.5px * var(--bd-fs));
+
+  .lattice {
+    @include m.fill;
+    background-repeat: repeat;
+    background-size: 44px 44px;
+    opacity: 0.16;
+  }
+  .sheetbg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 794px;
+    height: 1123px;
+  }
+  .sheet {
+    @include m.fill(24px);
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    padding: 40px 48px 38px;
+  }
+
+  .head {
+    display: flex;
+    flex: none;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 1em;
+    padding-bottom: 1.1em;
+    border-bottom: 3px double $gold;
+  }
+  .who {
+    flex: 1;
+    min-width: 0;
+  }
+  .bless {
+    display: flex;
+    align-items: center;
+    gap: 0.6em;
+    color: $blue;
+    font-weight: 600;
+
+    bd-symbol {
+      font-size: 1.7em;
+    }
+  }
+  .name {
+    margin-top: 0.2em;
+    color: $blue;
+    font-family: m.$cinzel;
+    font-size: 2.15em;
+    font-weight: 700;
+    line-height: 1.25;
+  }
+  .tag {
+    color: #7c6416;
+    font-style: italic;
+  }
+  .title {
+    display: inline-block;
+    margin-top: 0.7em;
+    padding: 0.2em 1.1em;
+    background: $blue;
+    color: #f2dd94;
+    font-family: m.$cinzel;
+    font-size: 0.8em;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+  }
+  .oct {
+    position: relative;
+    flex: none;
+    width: 136px;
+    height: 160px;
+  }
+  .bd-photo {
+    width: 136px;
+    height: 160px;
+  }
+  .mask {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 136px;
+    height: 160px;
+  }
+
+  .cols {
+    display: flex;
+    flex: 1;
+    gap: 28px;
+    min-height: 0;
+  }
+  .bd-flow[data-flow='side'] {
+    @include m.rows-stacked;
+    flex: 0 0 33%;
+    padding: 0 0 0 24px;
+    border-left: 1px solid rgba($gold, 0.7);
+  }
+  .bd-sec {
+    margin-top: 1.2em;
+  }
+  .bd-sec-title {
+    display: flex;
+    align-items: center;
+    gap: 0.6em;
+    margin-bottom: 0.45em;
+    color: $blue;
+    font-family: m.$cinzel;
+    font-size: 0.95em;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+
+    &::before {
+      content: '';
+      flex: none;
+      width: 0.55em;
+      height: 0.55em;
+      background: $gold;
+      transform: rotate(45deg);
+    }
+  }
+  .bd-row {
+    padding: 0.19em 0;
+    border-bottom: 1px solid #e9e0c6;
+  }
+  .bd-l {
+    flex-basis: 40%;
+    color: #5a6684;
+  }
+  .bd-v {
+    font-weight: 600;
+  }
+}

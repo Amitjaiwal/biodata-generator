@@ -10,7 +10,7 @@ import { SiteHeader } from './shared/site-header';
   imports: [RouterOutlet, SiteHeader, SiteFooter],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <a class="skip" href="#main">Skip to content</a>
+    <a class="skip" href="#main">{{ t('a11y.skip') }}</a>
     <app-site-header />
     <main id="main"><router-outlet /></main>
     <app-site-footer />
@@ -40,8 +40,11 @@ import { SiteHeader } from './shared/site-header';
   `,
 })
 export class App {
+  private readonly i18n = inject(I18nService);
+  protected readonly t = this.i18n.t;
+
   constructor() {
-    const i18n = inject(I18nService);
+    const i18n = this.i18n;
     const entitlements = inject(EntitlementService);
     // Saved preferences are applied after hydration so server and client markup match.
     afterNextRender(() => {

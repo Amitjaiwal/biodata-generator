@@ -1,0 +1,153 @@
+@use '../base/mixins' as m;
+
+.t-zarika {
+  $gold: #d9b45a;
+  $pale: #f3dfa6;
+  $ink: #14110f;
+
+  background: radial-gradient(ellipse at 50% 0%, #2a211b 0%, $ink 62%);
+  color: #efe6d4;
+  font-family: m.$cormorant;
+  font-size: calc(14.5px * var(--bd-fs));
+
+  .frame {
+    @include m.fill(22px);
+    border: 1px solid $gold;
+    pointer-events: none;
+
+    &::after {
+      content: '';
+      @include m.fill(6px);
+      border: 1px solid rgba($gold, 0.45);
+    }
+  }
+  @include m.corners(78px, 22px);
+
+  .inner {
+    position: relative;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    min-height: 0;
+    padding: 56px 66px 54px;
+  }
+
+  .head {
+    flex: none;
+    margin-bottom: 1.1em;
+    text-align: center;
+  }
+  bd-symbol {
+    font-size: 2em;
+  }
+  .bd-blessing {
+    margin-top: 0.15em;
+    color: $pale;
+    font-size: 1.02em;
+    font-weight: 600;
+  }
+  .title {
+    margin-top: 0.5em;
+    color: $gold;
+    font-family: m.$cinzel;
+    font-size: 1.6em;
+    font-weight: 700;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+  }
+  .oval {
+    position: relative;
+    display: inline-block;
+    margin-top: 0.9em;
+    padding: 5px;
+    border: 1.5px solid $gold;
+    border-radius: 50%;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      bottom: -8px;
+      left: -8px;
+      border: 1px solid rgba($gold, 0.5);
+      border-radius: 50%;
+    }
+  }
+  .bd-photo {
+    width: 126px;
+    height: 156px;
+    border-radius: 50%;
+  }
+  .name {
+    margin-top: 0.55em;
+    color: #fff;
+    font-family: m.$playfair;
+    font-size: 2.1em;
+    font-weight: 700;
+    line-height: 1.25;
+  }
+  .tag {
+    margin-top: 0.15em;
+    color: $pale;
+    font-style: italic;
+    letter-spacing: 0.05em;
+  }
+  .rule {
+    position: relative;
+    height: 1px;
+    margin: 1.1em auto 0;
+    max-width: 280px;
+    background: linear-gradient(90deg, transparent, $gold, transparent);
+
+    i {
+      position: absolute;
+      top: -4px;
+      left: 50%;
+      width: 8px;
+      height: 8px;
+      margin-left: -4px;
+      background: $gold;
+      transform: rotate(45deg);
+    }
+  }
+
+  .cols {
+    display: flex;
+    flex: 1;
+    gap: 34px;
+    min-height: 0;
+  }
+  .bd-flow[data-flow='side'] {
+    @include m.rows-stacked;
+    flex: 0 0 34%;
+    padding-left: 30px;
+    border-left: 1px solid rgba($gold, 0.4);
+  }
+
+  .bd-sec {
+    margin-top: 1.25em;
+  }
+  .bd-sec-title {
+    margin-bottom: 0.5em;
+    color: $gold;
+    font-family: m.$cinzel;
+    font-size: 0.86em;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+  }
+  @include m.title-trailing-rule(rgba($gold, 0.45));
+  .bd-row {
+    padding: 0.22em 0;
+    border-bottom: 1px dotted rgba($gold, 0.25);
+  }
+  .bd-l {
+    flex-basis: 40%;
+    color: #b8aa8c;
+    font-size: 0.95em;
+  }
+  .bd-v {
+    color: #fbf4e2;
+    font-weight: 600;
+  }
+}
