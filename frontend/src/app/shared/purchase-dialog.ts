@@ -9,6 +9,7 @@ import { EntitlementService } from '../core/services/entitlement.service';
 import { PaymentError, PaymentService } from '../core/services/payment.service';
 import { PricingService } from '../core/services/pricing.service';
 import { TEMPLATES } from '../templates/registry';
+import { PaymentProgress } from './payment-progress';
 
 export interface PurchaseDialogData {
   templateId: string;
@@ -25,7 +26,7 @@ const ERROR_KEYS: Record<string, string> = {
 /** Lets the visitor pick "this design" or "all designs" and pays through Razorpay. */
 @Component({
   selector: 'app-purchase-dialog',
-  imports: [MatDialogModule, MatButtonModule, MatIconModule, MatProgressSpinnerModule],
+  imports: [MatDialogModule, MatButtonModule, MatIconModule, MatProgressSpinnerModule, PaymentProgress],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <h2 mat-dialog-title>{{ t('buy.title') }}</h2>
@@ -53,6 +54,7 @@ const ERROR_KEYS: Record<string, string> = {
         }
       </div>
 
+      <app-payment-progress />
       @if (error(); as e) {
         <p class="error" role="alert"><mat-icon>error_outline</mat-icon>{{ t(e) }}</p>
       }

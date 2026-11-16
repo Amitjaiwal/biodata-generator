@@ -8,6 +8,7 @@ import { EntitlementService } from '../core/services/entitlement.service';
 import { PaymentError, PaymentService } from '../core/services/payment.service';
 import { PricingService } from '../core/services/pricing.service';
 import { TEMPLATES } from '../templates/registry';
+import { PaymentProgress } from './payment-progress';
 
 const ERROR_KEYS: Record<string, string> = {
   cancelled: 'buy.cancelled',
@@ -19,7 +20,7 @@ const ERROR_KEYS: Record<string, string> = {
 /** The three plans. Used on the homepage and the pricing page. Prices come from the backend. */
 @Component({
   selector: 'app-pricing-cards',
-  imports: [RouterLink, MatButtonModule, MatIconModule],
+  imports: [RouterLink, MatButtonModule, MatIconModule, PaymentProgress],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="plans">
@@ -78,6 +79,7 @@ const ERROR_KEYS: Record<string, string> = {
           <button matButton="filled" class="btn-lg" type="button" [disabled]="busy()" (click)="buyCollection()">
             {{ busy() ? t('buy.processing') : t('price.all.cta') }}
           </button>
+          <app-payment-progress />
         }
       </section>
     </div>

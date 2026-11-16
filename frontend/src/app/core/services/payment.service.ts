@@ -1,6 +1,6 @@
 import { DOCUMENT } from '@angular/common';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Injectable, inject } from '@angular/core';
+import { Injectable, inject, signal } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { firstValueFrom } from 'rxjs';
 import { environment } from '../../../environments/environment';
@@ -31,6 +31,9 @@ type RazorpayCtor = new (options: Record<string, unknown>) => RazorpayInstance;
 
 const CHECKOUT_SRC = 'https://checkout.razorpay.com/v1/checkout.js';
 
+/** After this long without the payment window, show the "not opening?" hint. */
+const SLOW_AFTER_MS = 15_000;
+
 /**
  * Runs a purchase end to end. The amount is decided by the server from the product code, and
  * access is granted only by the token the server returns after verifying Razorpay's signature.
@@ -43,27 +46,66 @@ export class PaymentService {
   private readonly dialog = inject(MatDialog);
   private readonly entitlements = inject(EntitlementService);
   private scriptPromise: Promise<void> | null = null;
+  private abortPreparing: (() => void) | null = null;
+
+  /**
+   * 'preparing' lasts from the click until Razorpay's window (or the demo dialog) opens. On the free
+   * backend this is where the wait happens, because the first request can hit a sleeping server.
+   */
+  readonly phase = signal<'idle' | 'preparing' | 'open'>('idle');
+  /** True once preparing has taken longer than SLOW_AFTER_MS, so the screen can offer a way out. */
+  readonly slow = signal(false);
 
   async purchase(productCode: ProductCode, templateId: string | null, description: string): Promise<EntitlementGrant> {
-    let order: CreateOrderResponse;
-    try {
-      order = await firstValueFrom(
-        this.http.post<CreateOrderResponse>(`${environment.apiBaseUrl}/payments/orders`, { productCode, templateId }),
-      );
-    } catch {
-      throw new PaymentError('unavailable');
-    }
+    this.phase.set('preparing');
+    this.slow.set(false);
+    const slowTimer = setTimeout(() => this.slow.set(true), SLOW_AFTER_MS);
+    // Rejects when the buyer gives up while we are still preparing. Raced against each wait below.
+    const aborted = new Promise<never>((_, reject) => {
+      this.abortPreparing = () => reject(new PaymentError('cancelled'));
+    });
+    aborted.catch(() => undefined);
 
-    const grant = order.demo ? await this.demoCheckout(order) : await this.razorpayCheckout(order, description);
-    this.entitlements.add(grant);
-    return grant;
+    try {
+      let order: CreateOrderResponse;
+      try {
+        order = await Promise.race([
+          firstValueFrom(
+            this.http.post<CreateOrderResponse>(`${environment.apiBaseUrl}/payments/orders`, { productCode, templateId }),
+          ),
+          aborted,
+        ]);
+      } catch (e) {
+        throw e instanceof PaymentError ? e : new PaymentError('unavailable');
+      }
+
+      const grant = order.demo
+        ? await this.demoCheckout(order)
+        : await this.razorpayCheckout(order, description, aborted);
+      this.entitlements.add(grant);
+      return grant;
+    } finally {
+      clearTimeout(slowTimer);
+      this.abortPreparing = null;
+      this.slow.set(false);
+      this.phase.set('idle');
+    }
   }
 
-  private async razorpayCheckout(order: CreateOrderResponse, description: string): Promise<EntitlementGrant> {
+  /** Lets the buyer stop waiting for the window to open. Does nothing once Razorpay is showing. */
+  cancelPreparing(): void {
+    this.abortPreparing?.();
+  }
+
+  private async razorpayCheckout(
+    order: CreateOrderResponse,
+    description: string,
+    aborted: Promise<never>,
+  ): Promise<EntitlementGrant> {
     try {
-      await this.loadScript();
-    } catch {
-      throw new PaymentError('unavailable');
+      await Promise.race([this.loadScript(), aborted]);
+    } catch (e) {
+      throw e instanceof PaymentError ? e : new PaymentError('unavailable');
     }
     const Razorpay = (this.document.defaultView as unknown as { Razorpay?: RazorpayCtor }).Razorpay;
     if (!Razorpay) throw new PaymentError('unavailable');
@@ -92,6 +134,8 @@ export class PaymentService {
         // The attempt is only over once the payment succeeds or the window is closed.
         checkout.on('payment.failed', () => (failedOnce = true));
         checkout.open();
+        this.abortPreparing = null;
+        this.phase.set('open');
       });
     } finally {
       body.classList.remove('sp-checkout-open');
@@ -112,6 +156,8 @@ export class PaymentService {
 
   /** Local testing only: the server offers this path when it has no Razorpay keys. */
   private async demoCheckout(order: CreateOrderResponse): Promise<EntitlementGrant> {
+    this.abortPreparing = null;
+    this.phase.set('open');
     const { DemoCheckoutDialog } = await import('../../shared/demo-checkout-dialog');
     const ok = await firstValueFrom(
       this.dialog.open<unknown, { amount: number }, boolean>(DemoCheckoutDialog, {

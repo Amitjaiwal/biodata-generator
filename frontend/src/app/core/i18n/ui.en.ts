@@ -242,6 +242,11 @@ export const UI_EN: Record<string, string> = {
   'buy.pay': 'Pay {amount}',
   'buy.secure': 'Secure payment by Razorpay. UPI, cards, net banking and wallets.',
   'buy.processing': 'Processing payment…',
+  'buy.preparing': 'Preparing secure payment…',
+  'buy.preparingSub':
+    "Please wait while we open the Razorpay payment window. This may take a few seconds. Please don't close this window or click again.",
+  'buy.slow': "Payment window isn't opening? Please try again.",
+  'buy.tryAgain': 'Cancel and try again',
   'buy.success': 'Payment successful. Your design is unlocked.',
   'buy.cancelled': 'Payment was cancelled.',
   'buy.failed': 'The payment did not go through. You have not been charged.',
