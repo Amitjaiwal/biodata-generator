@@ -7,8 +7,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#B3261E" />
     <meta name="format-detection" content="telephone=no" />
-    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-    <link rel="manifest" href="manifest.webmanifest" />
+    <!-- Icons use absolute paths so every page (including /templates/gold) finds them. Search engines
+         read the .ico or a PNG whose size is a multiple of 48 px; browsers pick the SVG. -->
+    <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48" />
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+    <link rel="icon" type="image/svg+xml" sizes="any" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.webmanifest" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link

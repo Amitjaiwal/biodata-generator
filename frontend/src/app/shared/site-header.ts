@@ -12,7 +12,7 @@ import { BrandLogo } from './brand-logo';
   imports: [RouterLink, RouterLinkActive, MatButtonModule, MatIconModule, MatMenuModule, BrandLogo],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <header class="bar">
+    <header class="bar" data-nosnippet>
       <div class="container row">
         <a routerLink="/" class="logo" [attr.aria-label]="t('a11y.home')"><app-brand-logo /></a>
 

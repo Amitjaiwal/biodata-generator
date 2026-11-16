@@ -10,7 +10,7 @@ import { BrandLogo } from './brand-logo';
   imports: [RouterLink, BrandLogo],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <footer class="footer">
+    <footer class="footer" data-nosnippet>
       <div class="container grid">
         <div class="brand">
           <app-brand-logo />
