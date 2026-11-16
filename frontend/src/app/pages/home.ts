@@ -619,6 +619,22 @@ export class Home {
           `Create your marriage biodata online in minutes. ${TEMPLATES.length} original designs for Hindu, Marathi, Muslim, Sikh, Christian and Jain families, live preview, and PDF download in English, Hindi and Marathi.`,
         path: '/',
         jsonLd: [
+          // Tells search engines the site's name and logo (used for the site name and logo in results).
+          {
+            '@context': 'https://schema.org',
+            '@type': 'WebSite',
+            name: SITE_NAME,
+            alternateName: ['Marriage Biodata Maker', 'ShubhPatra Marriage Biodata Maker'],
+            url: environment.siteUrl + '/',
+            inLanguage: ['en', 'hi', 'mr'],
+          },
+          {
+            '@context': 'https://schema.org',
+            '@type': 'Organization',
+            name: SITE_NAME,
+            url: environment.siteUrl + '/',
+            logo: { '@type': 'ImageObject', url: environment.siteUrl + '/icon-512.png', width: 512, height: 512 },
+          },
           {
             '@context': 'https://schema.org',
             '@type': 'WebApplication',
