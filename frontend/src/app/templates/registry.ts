@@ -20,6 +20,15 @@ import { SaralTemplate } from './designs/saral';
 import { TulsiTemplate } from './designs/tulsi';
 import { VivahTemplate } from './designs/vivah';
 
+import { BlushTemplate } from './designs/blush';
+import { DapperTemplate } from './designs/dapper';
+import { GraceTemplate } from './designs/grace';
+import { HaldiTemplate } from './designs/haldi';
+import { NeelMahalTemplate } from './designs/neelmahal';
+import { NishanTemplate } from './designs/nishan';
+import { RaniTemplate } from './designs/rani';
+import { ZarikaTemplate } from './designs/zarika';
+
 /**
  * The template catalogue. Adding a design means adding one component and one entry here;
  * the form, the data model and the preview engine do not change.
@@ -219,6 +228,101 @@ export const TEMPLATES: readonly TemplateDefinition[] = [
     side: ['birth', 'contact'],
     sample: 'jain',
     component: SamyakTemplate,
+  },
+  {
+    id: 'zarika',
+    name: 'Zarika Gold',
+    categories: ['gold', 'royal'],
+    tier: 'premium',
+    accent: '#D9B45A',
+    side: ['contact'],
+    sample: 'hindu',
+    featured: true,
+    isNew: true,
+    component: ZarikaTemplate,
+  },
+  {
+    id: 'rani',
+    name: 'Rani Magenta',
+    categories: ['royal', 'hindu', 'gold'],
+    tier: 'premium',
+    accent: '#8E1B5C',
+    side: ['family', 'contact'],
+    sample: 'hindi',
+    featured: true,
+    isNew: true,
+    component: RaniTemplate,
+  },
+  {
+    id: 'neelmahal',
+    name: 'Neel Mahal',
+    categories: ['royal', 'gold', 'traditional'],
+    tier: 'premium',
+    accent: '#12306B',
+    side: ['birth', 'contact'],
+    sample: 'hindu',
+    featured: true,
+    isNew: true,
+    component: NeelMahalTemplate,
+  },
+  {
+    id: 'haldi',
+    name: 'Haldi Marigold',
+    categories: ['traditional', 'hindu', 'floral'],
+    tier: 'free',
+    accent: '#F59E0B',
+    side: ['contact'],
+    sample: 'hindi',
+    featured: true,
+    isNew: true,
+    component: HaldiTemplate,
+  },
+  {
+    id: 'nishan',
+    name: 'Nishan',
+    categories: ['sikh', 'traditional'],
+    tier: 'premium',
+    accent: '#14325C',
+    side: ['family', 'contact'],
+    sample: 'sikh',
+    featured: true,
+    isNew: true,
+    component: NishanTemplate,
+  },
+  {
+    id: 'grace',
+    name: 'Grace',
+    categories: ['christian', 'elegant'],
+    tier: 'free',
+    accent: '#4F6D8A',
+    sample: 'christian',
+    featured: true,
+    isNew: true,
+    component: GraceTemplate,
+  },
+  {
+    id: 'blush',
+    name: 'Blush',
+    categories: ['bride', 'modern', 'floral'],
+    tier: 'premium',
+    accent: '#B4506A',
+    side: ['family', 'contact'],
+    sample: 'hindu',
+    featured: true,
+    isNew: true,
+    component: BlushTemplate,
+  },
+  {
+    id: 'dapper',
+    name: 'Dapper',
+    categories: ['groom', 'modern'],
+    tier: 'free',
+    accent: '#B8693B',
+    side: ['lifestyle', 'contact'],
+    sample: 'groom',
+    featured: true,
+    isNew: true,
+    component: DapperTemplate,
   },
 ];
 

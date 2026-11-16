@@ -4,6 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { map } from 'rxjs';
+import { environment } from '../../environments/environment';
 import { LANDINGS, Landing } from '../core/data/landings';
 import { I18nService } from '../core/i18n/i18n.service';
 import { TemplateDefinition } from '../core/models/template.model';
@@ -112,8 +113,11 @@ export class LandingPage {
   protected readonly designs = computed<TemplateDefinition[]>(() => {
     const p = this.page();
     if (!p) return [];
-    const list = p.category ? templatesIn(p.category) : TEMPLATES.filter((x) => x.featured);
-    return list.slice(0, 8);
+    const base = p.category ? templatesIn(p.category) : TEMPLATES.filter((x) => x.featured);
+    const list = p.tier ? base.filter((x) => x.tier === p.tier) : base;
+    // Free-design pages fall back to every free design when the featured ones are few.
+    const pool = p.tier && list.length < 8 ? TEMPLATES.filter((x) => x.tier === p.tier) : list;
+    return pool.slice(0, 8);
   });
 
   constructor() {
@@ -123,13 +127,32 @@ export class LandingPage {
       if (!p) return;
       // Pages written in Hindi or Marathi switch the site chrome too, unless the visitor chose a language.
       this.i18n.suggest(p.lang);
-      seo.set({ title: p.title, description: p.description, path: '/' + p.slug });
+      seo.set({
+        title: p.title,
+        description: p.description,
+        path: '/' + p.slug,
+        jsonLd: [
+          {
+            '@context': 'https://schema.org',
+            '@type': 'BreadcrumbList',
+            itemListElement: [
+              { '@type': 'ListItem', position: 1, name: 'Home', item: environment.siteUrl + '/' },
+              { '@type': 'ListItem', position: 2, name: p.h1, item: environment.siteUrl + '/' + p.slug },
+            ],
+          },
+        ],
+      });
     });
   }
 
   protected async preview(def: TemplateDefinition): Promise<void> {
     const { TemplatePreviewDialog } = await import('../shared/template-preview-dialog');
-    this.dialog.open(TemplatePreviewDialog, { data: def, width: '640px', maxWidth: '96vw', autoFocus: 'dialog' });
+    this.dialog.open(TemplatePreviewDialog, {
+      data: { def, list: this.designs() },
+      width: '640px',
+      maxWidth: '96vw',
+      autoFocus: 'dialog',
+    });
   }
 }
 

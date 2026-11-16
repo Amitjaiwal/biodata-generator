@@ -14,9 +14,9 @@ import { BrandLogo } from './brand-logo';
   template: `
     <header class="bar">
       <div class="container row">
-        <a routerLink="/" class="logo" aria-label="ShubhPatra home"><app-brand-logo /></a>
+        <a routerLink="/" class="logo" [attr.aria-label]="t('a11y.home')"><app-brand-logo /></a>
 
-        <nav class="links" aria-label="Main">
+        <nav class="links" [attr.aria-label]="t('a11y.mainNav')">
           <a routerLink="/templates" routerLinkActive="active">{{ t('nav.templates') }}</a>
           <a routerLink="/create" routerLinkActive="active">{{ t('nav.create') }}</a>
           <a routerLink="/pricing" routerLinkActive="active">{{ t('nav.pricing') }}</a>
@@ -53,10 +53,15 @@ import { BrandLogo } from './brand-logo';
     </mat-menu>
   `,
   styles: `
-    .bar {
+    /* The host is the sticky element. Sticking the inner bar does nothing, because its parent
+       (this host) is exactly as tall as the bar, so there is no room for it to move. */
+    :host {
       position: sticky;
       top: 0;
       z-index: 50;
+      display: block;
+    }
+    .bar {
       height: var(--sp-header-h);
       border-bottom: 1px solid var(--sp-border);
       background: rgba(255, 255, 255, 0.94);

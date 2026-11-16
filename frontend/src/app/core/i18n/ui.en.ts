@@ -1,5 +1,10 @@
 /** Site interface text in English. Other languages fall back to these keys. */
 export const UI_EN: Record<string, string> = {
+  'a11y.skip': 'Skip to content',
+  'a11y.mainNav': 'Main',
+  'a11y.home': 'ShubhPatra home',
+  'thumb.label': 'Preview of the {name} marriage biodata template',
+
   'brand.tagline': 'Beautiful marriage biodata in minutes.',
 
   'nav.templates': 'Templates',
@@ -141,6 +146,46 @@ export const UI_EN: Record<string, string> = {
   'gallery.sampleNote': 'Shown with sample details. Your own details will appear in the builder.',
   'gallery.useThis': 'Use this template',
 
+  'gallery.count1': '1 design',
+  'badge.new': 'New',
+  'gallery.promo.title': 'Love a premium design? Get all {n} for {price}',
+  'gallery.promo.sub':
+    'Pay once, unlock every premium design and switch between them freely. Or unlock a single design for {single}.',
+  'gallery.promo.cta': 'See pricing',
+  'gallery.prev': 'Previous design',
+  'gallery.next': 'Next design',
+  'gallery.empty': 'No designs match these filters yet.',
+  'gallery.reset': 'Show all designs',
+  'home.comm.eyebrow': 'Every community',
+  'home.comm.title': 'Biodata designs for every family and tradition',
+  'home.comm.sub':
+    'Wording, symbols and styles that suit your community, from Hindu and Marathi to Muslim, Sikh, Christian and Jain.',
+  'home.comm.hindu': 'Ganesh blessing, Om, kalash and horoscope fields.',
+  'home.comm.marathi': 'Toran, paithani borders and Marathi headings.',
+  'home.comm.muslim': 'Bismillah heading, crescent and geometric patterns.',
+  'home.comm.sikh': 'Ik Onkar heading in saffron and blue.',
+  'home.comm.christian': 'A cross, soft colours and clean layouts.',
+  'home.comm.jain': 'Jai Jinendra heading and the Jain emblem.',
+  'home.comm.bride': 'Soft, modern designs for girls.',
+  'home.comm.groom': 'Bold, modern designs for boys.',
+  'home.comm.cta': 'View designs',
+  'home.trust.eyebrow': 'Trust and privacy',
+  'home.trust.title': 'Your details stay yours',
+  'home.trust.sub':
+    'A biodata is personal. ShubhPatra is built so that it stays that way.',
+  'home.trust.1.t': 'Stays on your device',
+  'home.trust.1.d':
+    'Your details and photo are never uploaded. The PDF is created inside your browser.',
+  'home.trust.2.t': 'No account needed',
+  'home.trust.2.d':
+    'No sign-up, email or phone number to start. Open it, fill it in and download.',
+  'home.trust.3.t': 'Secure payments',
+  'home.trust.3.d':
+    'Premium designs are paid for through Razorpay. We never see or store your card or UPI details.',
+  'home.trust.4.t': 'Print-ready A4',
+  'home.trust.4.d':
+    'High-resolution A4 pages that look sharp on paper and on a phone screen.',
+
   'cat.traditional': 'Traditional',
   'cat.modern': 'Modern',
   'cat.royal': 'Royal',
@@ -151,6 +196,11 @@ export const UI_EN: Record<string, string> = {
   'cat.muslim': 'Muslim',
   'cat.jain': 'Jain',
   'cat.marathi': 'Marathi Special',
+  'cat.gold': 'Premium Gold',
+  'cat.sikh': 'Sikh',
+  'cat.christian': 'Christian',
+  'cat.bride': 'Modern Bride',
+  'cat.groom': 'Modern Groom',
 
   'b.title': 'Create your biodata',
   'b.intro': 'All fields are optional except the name. Empty fields are left out automatically.',
@@ -174,6 +224,16 @@ export const UI_EN: Record<string, string> = {
   'b.header': 'Photo and heading',
   'b.blessing': 'Blessing line',
   'b.blessingHint': 'Shown at the top. Leave blank to hide it.',
+  'b.sym.none': 'None',
+  'b.sym.om': 'Om (ॐ)',
+  'b.sym.shree': 'Shree (श्री)',
+  'b.sym.kalash': 'Kalash',
+  'b.sym.lotus': 'Lotus',
+  'b.sym.diya': 'Diya',
+  'b.sym.crescent': 'Crescent',
+  'b.sym.ikonkar': 'Ik Onkar (ੴ)',
+  'b.sym.cross': 'Cross',
+  'b.sym.jain': 'Jain emblem',
   'b.symbol': 'Symbol',
   'b.docTitle': 'Heading',
   'b.docTitleHint': 'Leave blank for the default heading.',

@@ -25,6 +25,8 @@ export abstract class TemplateBase {
   /** True when the heading is in a complex script, so designs can drop letter-spacing. */
   protected readonly titleIndic = computed(() => INDIC.test(this.model().title));
   protected readonly nameIndic = computed(() => INDIC.test(this.model().name));
+  /** True for long names, so designs with a big display name can step the size down. */
+  protected readonly nameLong = computed(() => this.model().name.length > 26);
 }
 
 /**

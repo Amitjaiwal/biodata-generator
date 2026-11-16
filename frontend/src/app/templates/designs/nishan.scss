@@ -1,0 +1,161 @@
+@use '../base/mixins' as m;
+
+.t-nishan {
+  $navy: #14325c;
+  $saffron: #f4a300;
+  $kesari: #e9870a;
+
+  background: #fffdf8;
+  color: #1c2433;
+  font-family: m.$poppins;
+  font-size: calc(12.8px * var(--bd-fs));
+
+  .head {
+    position: relative;
+    display: flex;
+    flex: none;
+    align-items: center;
+    gap: 24px;
+    padding: 40px 50px 34px;
+    background: $navy;
+    color: #fff;
+
+    &.slim {
+      height: 38px;
+      padding: 0;
+    }
+  }
+  .pat {
+    @include m.fill;
+    background-repeat: repeat;
+    background-size: 18px 18px;
+    opacity: 0.1;
+  }
+  .seal {
+    position: relative;
+    display: flex;
+    flex: none;
+    align-items: center;
+    justify-content: center;
+    width: 92px;
+    height: 92px;
+    border: 3px solid #fff;
+    border-radius: 50%;
+    background: $saffron;
+
+    bd-symbol {
+      font-size: 2.7em;
+    }
+  }
+  .who {
+    position: relative;
+    flex: 1;
+    min-width: 0;
+  }
+  .bd-blessing {
+    color: #ffd98a;
+    font-weight: 500;
+  }
+  .name {
+    margin-top: 0.15em;
+    font-family: m.$playfair;
+    font-size: 2.35em;
+    font-weight: 700;
+    line-height: 1.22;
+  }
+  .tag {
+    color: rgba(255, 255, 255, 0.8);
+  }
+  .title {
+    display: inline-block;
+    margin-top: 0.7em;
+    padding: 0.18em 1em;
+    border-radius: 3px;
+    background: $saffron;
+    color: $navy;
+    font-size: 0.82em;
+    font-weight: 700;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+  }
+  .ph {
+    position: relative;
+    flex: none;
+    padding: 4px;
+    border: 2px solid $saffron;
+    border-radius: 14px;
+    background: $navy;
+  }
+  .bd-photo {
+    width: 112px;
+    height: 140px;
+    border-radius: 10px;
+  }
+
+  .stripe {
+    display: flex;
+    flex: none;
+    height: 10px;
+
+    i {
+      flex: 1;
+      background: $saffron;
+
+      &:nth-child(2) {
+        background: #fff;
+      }
+      &:nth-child(3) {
+        background: $kesari;
+      }
+    }
+  }
+
+  .body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    min-height: 0;
+    padding: 26px 50px 20px;
+  }
+  .cols {
+    display: flex;
+    flex: 1;
+    gap: 28px;
+    min-height: 0;
+  }
+  .bd-flow[data-flow='side'] {
+    @include m.rows-stacked;
+    flex: 0 0 33%;
+  }
+
+  .bd-sec {
+    margin-top: 1.15em;
+    padding: 0.2em 0 0.15em 1em;
+    border-left: 4px solid $saffron;
+  }
+  .bd-sec-title {
+    margin-bottom: 0.3em;
+    color: $navy;
+    font-size: 1em;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .bd-row {
+    padding: 0.16em 0;
+  }
+  .bd-l {
+    flex-basis: 42%;
+    color: #6a7690;
+  }
+  .bd-v {
+    font-weight: 600;
+  }
+
+  .check {
+    flex: none;
+    height: 18px;
+    background-repeat: repeat-x;
+    background-size: 18px 18px;
+  }
+}

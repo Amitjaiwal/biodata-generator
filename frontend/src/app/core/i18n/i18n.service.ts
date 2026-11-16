@@ -52,6 +52,11 @@ export class I18nService {
     this.apply(lang);
   }
 
+  /** True once the visitor has picked a language themselves, here or in an earlier visit. */
+  hasChosen(): boolean {
+    return this.userChose;
+  }
+
   /** Language suggested by a page (for example the Marathi landing page). User choice wins. */
   suggest(lang: Lang): void {
     if (!this.userChose) this.apply(lang);

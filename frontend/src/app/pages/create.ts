@@ -6,8 +6,10 @@ import {
   Injector,
   afterNextRender,
   computed,
+  effect,
   inject,
   signal,
+  untracked,
   viewChild,
 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
@@ -27,6 +29,7 @@ import { BiodataStore, FONT_SCALES } from '../biodata/store/biodata.store';
 import { I18nService, LANG_NAMES } from '../core/i18n/i18n.service';
 import { LANGS, Lang } from '../core/models/biodata.model';
 import { EntitlementGrant } from '../core/models/commerce.model';
+import { TEMPLATE_CATEGORIES, TemplateCategory, TemplateTier } from '../core/models/template.model';
 import { EntitlementService } from '../core/services/entitlement.service';
 import { PdfQuality, PdfService, pdfFileName } from '../core/services/pdf.service';
 import { PricingService } from '../core/services/pricing.service';
@@ -77,7 +80,7 @@ const ZOOM_STEPS = [0.75, 1, 1.25, 1.5];
             class="langs"
             hideSingleSelectionIndicator
             [value]="store.biodata().language"
-            (change)="store.setLanguage($event.value)"
+            (change)="setLanguage($event.value)"
             [attr.aria-label]="t('b.lang')"
           >
             @for (l of langs; track l) {
@@ -152,8 +155,23 @@ const ZOOM_STEPS = [0.75, 1, 1.25, 1.5];
               </div>
 
               <h2>{{ t('b.chooseTemplate') }}</h2>
+              <div class="pfilters">
+                <div class="pchips" role="group" [attr.aria-label]="t('gallery.all')">
+                  <button type="button" [class.on]="pickCat() === 'all'" (click)="pickCat.set('all')">{{ t('gallery.all') }}</button>
+                  @for (c of pickCats; track c) {
+                    <button type="button" [class.on]="pickCat() === c" (click)="pickCat.set(c)">{{ t('cat.' + c) }}</button>
+                  }
+                </div>
+                <div class="ptiers" role="group">
+                  @for (x of pickTiers; track x) {
+                    <button type="button" [class.on]="pickTier() === x" (click)="pickTier.set(x)">
+                      {{ x === 'all' ? t('gallery.all') : x === 'free' ? t('common.free') : t('common.premium') }}
+                    </button>
+                  }
+                </div>
+              </div>
               <div class="picker">
-                @for (x of templates; track x.id) {
+                @for (x of pickList(); track x.id) {
                   <button
                     type="button"
                     class="pick"
@@ -162,6 +180,9 @@ const ZOOM_STEPS = [0.75, 1, 1.25, 1.5];
                     (click)="choose(x.id)"
                   >
                     <app-template-thumb [def]="x" />
+                    @if (x.isNew) {
+                      <span class="pick-new">{{ t('badge.new') }}</span>
+                    }
                     <span class="pick-name">
                       {{ x.name }}
                       @if (x.tier === 'premium') {
@@ -171,6 +192,9 @@ const ZOOM_STEPS = [0.75, 1, 1.25, 1.5];
                   </button>
                 }
               </div>
+              @if (!pickList().length) {
+                <p class="pempty">{{ t('gallery.empty') }}</p>
+              }
             </div>
           }
         </section>
@@ -227,6 +251,7 @@ const ZOOM_STEPS = [0.75, 1, 1.25, 1.5];
     }
     .builder {
       min-height: calc(100vh - var(--sp-header-h));
+      overflow-x: clip;
     }
     .toolbar {
       position: sticky;
@@ -361,6 +386,7 @@ const ZOOM_STEPS = [0.75, 1, 1.25, 1.5];
     }
 
     .design {
+      min-width: 0;
       padding: 18px;
       border: 1px solid var(--sp-border);
       border-radius: 14px;
@@ -383,6 +409,78 @@ const ZOOM_STEPS = [0.75, 1, 1.25, 1.5];
     .opt small {
       flex-basis: 100%;
       color: var(--sp-muted);
+    }
+    .pfilters {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    .pchips {
+      display: flex;
+      gap: 6px;
+      margin: 0 -18px;
+      padding: 0 18px 4px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .pchips::-webkit-scrollbar {
+      display: none;
+    }
+    .pchips button,
+    .ptiers button {
+      flex: none;
+      padding: 5px 12px;
+      border: 1px solid var(--sp-border);
+      border-radius: 999px;
+      background: #fff;
+      color: var(--sp-ink);
+      font: inherit;
+      font-size: 0.82rem;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+    .pchips button.on {
+      border-color: var(--sp-primary);
+      background: var(--sp-primary);
+      color: #fff;
+    }
+    .ptiers {
+      display: inline-flex;
+      align-self: flex-start;
+      padding: 2px;
+      border: 1px solid var(--sp-border);
+      border-radius: 999px;
+      background: #fff;
+    }
+    .ptiers button {
+      padding: 4px 12px;
+      border: 0;
+    }
+    .ptiers button.on {
+      background: var(--sp-ink);
+      color: #fff;
+    }
+    .pempty {
+      padding: 18px 0;
+      color: var(--sp-muted);
+      text-align: center;
+    }
+    .pick {
+      position: relative;
+    }
+    .pick-new {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      padding: 2px 7px;
+      border-radius: 999px;
+      background: var(--sp-primary);
+      color: #fff;
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
     }
     .picker {
       display: grid;
@@ -481,7 +579,7 @@ const ZOOM_STEPS = [0.75, 1, 1.25, 1.5];
     }
     @media (max-width: 960px) {
       .cols {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
         padding-bottom: 96px;
       }
       .preview-col {
@@ -568,10 +666,24 @@ export class Create {
   protected readonly langNames = LANG_NAMES;
   protected readonly scales = FONT_SCALES;
   protected readonly templates = TEMPLATES;
+  protected readonly pickCats = TEMPLATE_CATEGORIES;
+  protected readonly pickTiers: ('all' | TemplateTier)[] = ['all', 'free', 'premium'];
+  protected readonly pickCat = signal<TemplateCategory | 'all'>('all');
+  protected readonly pickTier = signal<'all' | TemplateTier>('all');
+  /** Designs shown in the picker, narrowed by the category and price chips. */
+  protected readonly pickList = computed(() => {
+    const cat = this.pickCat();
+    const tier = this.pickTier();
+    return TEMPLATES.filter(
+      (x) => (cat === 'all' || x.categories.includes(cat)) && (tier === 'all' || x.tier === tier),
+    );
+  });
   protected readonly watermark = `${SITE_NAME} Preview`;
   protected readonly zoomMax = ZOOM_STEPS.length - 1;
 
   protected readonly tab = signal<Tab>('details');
+  /** True once the saved biodata has been read, so its language is not overwritten by the default. */
+  private readonly hydrated = signal(false);
   protected readonly mobile = signal<MobileView>('edit');
   protected readonly busy = signal(false);
   protected readonly showErrors = signal(false);
@@ -599,9 +711,27 @@ export class Create {
       path: '/create',
     });
 
+    // One language across the editor and the preview: when the site language changes (for
+    // example from the header menu), the biodata's labels follow it. Entered values are untouched.
+    effect(() => {
+      const ui = this.i18n.lang();
+      if (!this.hydrated()) return;
+      untracked(() => {
+        if (this.store.biodata().language !== ui) this.store.setLanguage(ui);
+      });
+    });
+
     const destroyRef = inject(DestroyRef);
     afterNextRender(() => {
       this.store.hydrate();
+      // The editor and the biodata share one language. A language the visitor picked themselves
+      // wins; otherwise the editor follows the saved biodata.
+      if (this.i18n.hasChosen()) {
+        if (this.store.biodata().language !== this.i18n.lang()) this.store.setLanguage(this.i18n.lang());
+      } else {
+        this.i18n.suggest(this.store.biodata().language);
+      }
+      this.hydrated.set(true);
       this.pricing.load();
 
       const wanted = this.route.snapshot.queryParamMap.get('template');
@@ -616,6 +746,12 @@ export class Create {
       destroyRef.onDestroy(() => observer.disconnect());
       this.measureStage();
     });
+  }
+
+  /** The toolbar toggle changes the editor, the preview and the PDF labels together. */
+  protected setLanguage(lang: Lang): void {
+    this.store.setLanguage(lang);
+    this.i18n.setLang(lang);
   }
 
   protected showDesign(): void {

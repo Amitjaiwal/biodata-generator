@@ -24,6 +24,9 @@ import { TemplateThumb } from './template-thumb';
             {{ t('common.free') }}
           }
         </span>
+        @if (def().isNew) {
+          <span class="new">{{ t('badge.new') }}</span>
+        }
       </button>
       <div class="meta">
         <h3>{{ def().name }}</h3>
@@ -89,6 +92,20 @@ import { TemplateThumb } from './template-thumb';
       background: #fff4d6;
       color: #8a5a00;
     }
+    .new {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: var(--sp-primary);
+      color: #fff;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.18);
+    }
     .tier mat-icon {
       width: 15px;
       height: 15px;
@@ -129,6 +146,10 @@ import { TemplateThumb } from './template-thumb';
       .tier {
         top: 14px;
         left: 14px;
+      }
+      .new {
+        top: 14px;
+        right: 14px;
       }
     }
   `,

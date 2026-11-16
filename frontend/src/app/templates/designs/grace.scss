@@ -1,0 +1,122 @@
+@use '../base/mixins' as m;
+
+.t-grace {
+  $blue: #4f6d8a;
+  $sage: #7c9a7e;
+  $ink: #2b3440;
+
+  background: #fbf9f4;
+  color: $ink;
+  font-family: m.$serif;
+  font-size: calc(13.5px * var(--bd-fs));
+
+  .frame {
+    @include m.fill(20px);
+    border: 1px solid rgba($blue, 0.55);
+    pointer-events: none;
+
+    &::after {
+      content: '';
+      @include m.fill(5px);
+      border: 1px solid rgba($blue, 0.22);
+    }
+  }
+  .sprig {
+    position: absolute;
+    left: 40px;
+    right: 40px;
+    height: 28px;
+    background-repeat: repeat-x;
+    background-size: 64px 28px;
+    background-position: center;
+
+    &.top {
+      top: 30px;
+    }
+    &.bottom {
+      bottom: 30px;
+      transform: scaleY(-1);
+    }
+  }
+
+  .inner {
+    position: relative;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    min-height: 0;
+    padding: 70px 70px 66px;
+  }
+
+  .head {
+    flex: none;
+    margin-bottom: 1em;
+    text-align: center;
+  }
+  bd-symbol {
+    font-size: 1.9em;
+  }
+  .bd-blessing {
+    margin-top: 0.25em;
+    color: $blue;
+    font-style: italic;
+  }
+  .title {
+    margin-top: 0.4em;
+    color: $ink;
+    font-family: m.$cormorant;
+    font-size: 1.9em;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+  }
+  .arch {
+    display: inline-block;
+    margin-top: 0.8em;
+    padding: 5px;
+    border: 1.5px solid $blue;
+    border-radius: 80px 80px 6px 6px;
+  }
+  .bd-photo {
+    width: 116px;
+    height: 144px;
+    border-radius: 74px 74px 3px 3px;
+  }
+  .name {
+    margin-top: 0.5em;
+    color: $blue;
+    font-family: m.$cormorant;
+    font-size: 2.35em;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+  .tag {
+    color: #6c7886;
+    font-style: italic;
+  }
+
+  .bd-sec {
+    margin-top: 1.3em;
+  }
+  .bd-sec-title {
+    margin-bottom: 0.45em;
+    color: $blue;
+    font-family: m.$cormorant;
+    font-size: 1.2em;
+    letter-spacing: 0.1em;
+    text-align: center;
+  }
+  @include m.title-centered-rule(rgba($sage, 0.7), 0.9em);
+  @include m.rows-grid(2, 2.4em);
+  .bd-row {
+    padding: 0.2em 0;
+    border-bottom: 1px solid #ece7dc;
+  }
+  .bd-l {
+    flex-basis: 40%;
+    color: #7a8794;
+  }
+  .bd-v {
+    font-weight: 600;
+  }
+}

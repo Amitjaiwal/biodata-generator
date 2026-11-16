@@ -1,0 +1,156 @@
+@use '../base/mixins' as m;
+
+.t-blush {
+  $rose: #b4506a;
+  $deep: #7a2e45;
+  $gold: #d9a441;
+
+  background: #fdf1f0;
+  color: #3a2530;
+  font-family: m.$poppins;
+  font-size: calc(12.8px * var(--bd-fs));
+
+  .bloom {
+    position: absolute;
+    width: 196px;
+    height: 196px;
+    opacity: 0.85;
+    pointer-events: none;
+
+    &.a {
+      top: -58px;
+      left: -58px;
+    }
+    &.b {
+      right: -78px;
+      bottom: -78px;
+      transform: rotate(180deg);
+    }
+  }
+
+  .inner {
+    position: relative;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    min-height: 0;
+    padding: 46px 48px 44px;
+  }
+
+  .head {
+    display: flex;
+    flex: none;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 0.4em;
+    padding: 0 0 0 96px;
+  }
+  .who {
+    flex: 1;
+    min-width: 0;
+  }
+  .bless {
+    display: flex;
+    align-items: center;
+    gap: 0.6em;
+    color: $rose;
+    font-weight: 500;
+
+    bd-symbol {
+      font-size: 1.5em;
+    }
+  }
+  .title {
+    margin-top: 0.6em;
+    color: $gold;
+    font-size: 0.8em;
+    font-weight: 600;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+  }
+  .name {
+    margin-top: 0.1em;
+    color: $deep;
+    font-family: m.$playfair;
+    font-size: 2.6em;
+    font-style: italic;
+    font-weight: 500;
+    line-height: 1.18;
+  }
+  .tag {
+    margin-top: 0.2em;
+    color: $rose;
+    font-weight: 500;
+  }
+  .ring {
+    flex: none;
+    padding: 6px;
+    border: 3px solid $gold;
+    border-radius: 50%;
+    background: #fff;
+  }
+  .bd-photo {
+    width: 142px;
+    height: 142px;
+    border-radius: 50%;
+  }
+
+  .cols {
+    display: flex;
+    flex: 1;
+    gap: 18px;
+    min-height: 0;
+  }
+  .cols > .bd-flow {
+    flex: 1 1 0;
+  }
+  .bd-flow[data-flow='side'] {
+    flex: 0 0 36%;
+  }
+
+  .bd-sec {
+    margin-top: 14px;
+    padding: 14px 18px 8px;
+    border: 1px solid rgba($rose, 0.2);
+    border-radius: 16px;
+    background: #fff;
+  }
+  .bd-sec-title {
+    display: flex;
+    align-items: center;
+    gap: 0.6em;
+    margin-bottom: 0.4em;
+    color: $deep;
+    font-size: 0.95em;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+
+    &::before {
+      content: '';
+      flex: none;
+      width: 0.7em;
+      height: 0.7em;
+      border-radius: 50%;
+      background: $rose;
+    }
+  }
+  @include m.rows-stacked;
+  .bd-row {
+    padding: 0.18em 0;
+  }
+  .bd-l {
+    color: $rose;
+    font-size: 0.78em;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .bd-l.indic {
+    text-transform: none;
+  }
+  .bd-v {
+    font-weight: 500;
+  }
+}

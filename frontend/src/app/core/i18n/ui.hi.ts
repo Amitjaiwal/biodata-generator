@@ -1,5 +1,10 @@
 /** Site interface text in Hindi. Missing keys fall back to English. */
 export const UI_HI: Record<string, string> = {
+  'a11y.skip': 'मुख्य सामग्री पर जाएँ',
+  'a11y.mainNav': 'मुख्य मेनू',
+  'a11y.home': 'ShubhPatra होम',
+  'thumb.label': '{name} विवाह बायोडाटा टेम्पलेट का पूर्वावलोकन',
+
   'brand.tagline': 'कुछ ही मिनटों में सुंदर विवाह बायोडाटा।',
 
   'nav.templates': 'टेम्पलेट',
@@ -140,6 +145,45 @@ export const UI_HI: Record<string, string> = {
   'gallery.sampleNote': 'नमूना जानकारी के साथ दिखाया गया है। बिल्डर में आपकी अपनी जानकारी दिखेगी।',
   'gallery.useThis': 'यह टेम्पलेट चुनें',
 
+  'gallery.count1': '1 डिज़ाइन',
+  'badge.new': 'नया',
+  'gallery.promo.title': 'प्रीमियम डिज़ाइन पसंद आया? सभी {n} सिर्फ़ {price} में',
+  'gallery.promo.sub':
+    'एक बार भुगतान करें, सभी प्रीमियम डिज़ाइन खोलें और उनके बीच आराम से बदलें। या एक डिज़ाइन सिर्फ़ {single} में खोलें।',
+  'gallery.promo.cta': 'मूल्य देखें',
+  'gallery.prev': 'पिछला डिज़ाइन',
+  'gallery.next': 'अगला डिज़ाइन',
+  'gallery.empty': 'इन फ़िल्टर से कोई डिज़ाइन नहीं मिला।',
+  'gallery.reset': 'सभी डिज़ाइन दिखाएँ',
+  'home.comm.eyebrow': 'हर समुदाय के लिए',
+  'home.comm.title': 'हर परिवार और परंपरा के लिए बायोडाटा डिज़ाइन',
+  'home.comm.sub':
+    'आपके समुदाय के अनुरूप शब्द, प्रतीक और शैली, हिंदू और मराठी से लेकर मुस्लिम, सिख, ईसाई और जैन तक।',
+  'home.comm.hindu': 'गणेश वंदना, ॐ, कलश और कुंडली के फ़ील्ड।',
+  'home.comm.marathi': 'तोरण, पैठणी किनार और मराठी शीर्षक।',
+  'home.comm.muslim': 'बिस्मिल्लाह शीर्षक, चाँद और ज्यामितीय नक़्क़ाशी।',
+  'home.comm.sikh': 'केसरी और नीले रंग में इक ओंकार शीर्षक।',
+  'home.comm.christian': 'क्रॉस, हल्के रंग और साफ़ लेआउट।',
+  'home.comm.jain': 'जय जिनेन्द्र शीर्षक और जैन प्रतीक।',
+  'home.comm.bride': 'लड़कियों के लिए कोमल, आधुनिक डिज़ाइन।',
+  'home.comm.groom': 'लड़कों के लिए दमदार, आधुनिक डिज़ाइन।',
+  'home.comm.cta': 'डिज़ाइन देखें',
+  'home.trust.eyebrow': 'भरोसा और गोपनीयता',
+  'home.trust.title': 'आपकी जानकारी आपके पास ही रहती है',
+  'home.trust.sub': 'बायोडाटा निजी होता है। ShubhPatra इसी सोच से बनाया गया है।',
+  'home.trust.1.t': 'आपके डिवाइस पर ही',
+  'home.trust.1.d':
+    'आपकी जानकारी और फ़ोटो कभी अपलोड नहीं होते। PDF आपके ब्राउज़र में ही बनती है।',
+  'home.trust.2.t': 'खाता बनाने की ज़रूरत नहीं',
+  'home.trust.2.d':
+    'शुरू करने के लिए साइन-अप, ईमेल या फ़ोन नंबर नहीं। खोलें, भरें और डाउनलोड करें।',
+  'home.trust.3.t': 'सुरक्षित भुगतान',
+  'home.trust.3.d':
+    'प्रीमियम डिज़ाइन का भुगतान Razorpay से होता है। हम आपके कार्ड या UPI की जानकारी न देखते हैं, न रखते हैं।',
+  'home.trust.4.t': 'प्रिंट के लिए तैयार A4',
+  'home.trust.4.d':
+    'ऊँचे रिज़ॉल्यूशन के A4 पेज, जो काग़ज़ और फ़ोन दोनों पर साफ़ दिखते हैं।',
+
   'cat.traditional': 'पारंपरिक',
   'cat.modern': 'आधुनिक',
   'cat.royal': 'रॉयल',
@@ -150,6 +194,11 @@ export const UI_HI: Record<string, string> = {
   'cat.muslim': 'मुस्लिम',
   'cat.jain': 'जैन',
   'cat.marathi': 'मराठी विशेष',
+  'cat.gold': 'प्रीमियम गोल्ड',
+  'cat.sikh': 'सिख',
+  'cat.christian': 'ईसाई',
+  'cat.bride': 'आधुनिक दुल्हन',
+  'cat.groom': 'आधुनिक दूल्हा',
 
   'b.title': 'अपना बायोडाटा बनाएँ',
   'b.intro': 'नाम के अलावा सभी फ़ील्ड वैकल्पिक हैं। खाली फ़ील्ड अपने आप हट जाते हैं।',
@@ -170,9 +219,19 @@ export const UI_HI: Record<string, string> = {
   'b.template': 'टेम्पलेट',
   'b.change': 'बदलें',
   'b.chooseTemplate': 'टेम्पलेट चुनें',
-  'b.header': 'फ़ोटो और शीर्षक',
+  'b.header': 'फोटो और शीर्षक',
   'b.blessing': 'मंगल वाक्य',
   'b.blessingHint': 'सबसे ऊपर दिखता है। छिपाने के लिए खाली छोड़ें।',
+  'b.sym.none': 'कोई नहीं',
+  'b.sym.om': 'ॐ (ओम)',
+  'b.sym.shree': 'श्री',
+  'b.sym.kalash': 'कलश',
+  'b.sym.lotus': 'कमल',
+  'b.sym.diya': 'दीपक',
+  'b.sym.crescent': 'अर्धचंद्र',
+  'b.sym.ikonkar': 'ੴ (इक ओंकार)',
+  'b.sym.cross': 'क्रॉस',
+  'b.sym.jain': 'जैन प्रतीक',
   'b.symbol': 'चिह्न',
   'b.docTitle': 'शीर्षक',
   'b.docTitleHint': 'डिफ़ॉल्ट शीर्षक के लिए खाली छोड़ें।',
@@ -230,7 +289,7 @@ export const UI_HI: Record<string, string> = {
   'b.premiumNote': 'प्रीमियम डिज़ाइन। अनलॉक करने तक प्रीव्यू पर वॉटरमार्क रहेगा।',
   'b.unlock': 'अनलॉक करें',
   'b.unlocked': 'अनलॉक है',
-  'b.age.auto': 'जन्म तिथि से निकाली गई है। आप इसे बदल सकते हैं।',
+  'b.age.auto': 'जन्म तिथि के आधार पर गणना की गई है। आप इसे बदल सकते हैं।',
 
   'buy.title': 'यह प्रीमियम डिज़ाइन अनलॉक करें',
   'buy.sub': 'एक बार का भुगतान। कोई सब्सक्रिप्शन या ऑटो-रिन्यूअल नहीं।',

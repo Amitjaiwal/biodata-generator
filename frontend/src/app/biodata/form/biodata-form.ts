@@ -19,9 +19,8 @@ import {
   MemberRelation,
   SYMBOL_KEYS,
   SectionKey,
-  SymbolKey,
 } from '../../core/models/biodata.model';
-import { validatePhotoFile } from '../photo/photo-rules';
+import { PHOTO_ACCEPT, normalizePhotoFile, validatePhotoFile } from '../photo/photo-rules';
 import { BiodataStore } from '../store/biodata.store';
 import { FieldInput } from './field-input';
 import { fieldError } from './validation';
@@ -35,19 +34,6 @@ const ICONS: Record<SectionKey, string> = {
   partner: 'favorite',
   contact: 'call',
   custom: 'notes',
-};
-
-const SYMBOL_NAMES: Record<SymbolKey, string> = {
-  none: 'None',
-  om: 'Om (ॐ)',
-  shree: 'Shree (श्री)',
-  kalash: 'Kalash',
-  lotus: 'Lotus',
-  diya: 'Diya',
-  crescent: 'Crescent',
-  ikonkar: 'Ik Onkar (ੴ)',
-  cross: 'Cross',
-  jain: 'Jain emblem',
 };
 
 /**
@@ -97,7 +83,15 @@ const SYMBOL_NAMES: Record<SymbolKey, string> = {
               </div>
               <small>{{ t('b.photo.hint') }}</small>
             </div>
-            <input #file type="file" hidden accept="image/jpeg,image/png,image/webp" (change)="onFile($event)" />
+            <input
+              #file
+              class="file-input"
+              type="file"
+              tabindex="-1"
+              aria-hidden="true"
+              [accept]="photoAccept"
+              (change)="onFile($event)"
+            />
           </div>
 
           <div class="grid">
@@ -121,7 +115,7 @@ const SYMBOL_NAMES: Record<SymbolKey, string> = {
               <mat-label>{{ t('b.symbol') }}</mat-label>
               <mat-select [value]="b().symbol" (selectionChange)="store.setSymbol($event.value)">
                 @for (s of symbols; track s) {
-                  <mat-option [value]="s">{{ symbolNames[s] }}</mat-option>
+                  <mat-option [value]="s">{{ t('b.sym.' + s) }}</mat-option>
                 }
               </mat-select>
             </mat-form-field>
@@ -395,6 +389,15 @@ const SYMBOL_NAMES: Record<SymbolKey, string> = {
     .full {
       margin-bottom: 14px;
     }
+    /* Visually hidden but still rendered: older mobile browsers ignore a programmatic click on display:none inputs. */
+    .file-input {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      opacity: 0;
+      pointer-events: none;
+    }
     .photo {
       display: flex;
       gap: 16px;
@@ -498,7 +501,6 @@ export class BiodataForm {
   protected readonly open = signal<string>('personal');
   protected readonly icons = ICONS;
   protected readonly symbols = SYMBOL_KEYS;
-  protected readonly symbolNames = SYMBOL_NAMES;
   protected readonly blessings = BLESSING_PRESETS;
 
   /** Opens a section programmatically, for example to show a validation error. */
@@ -509,6 +511,8 @@ export class BiodataForm {
   protected closed(id: string): void {
     if (this.open() === id) this.open.set('');
   }
+
+  protected readonly photoAccept = PHOTO_ACCEPT;
 
   protected photoBg(): string | null {
     const photo = this.b().photo;
@@ -557,7 +561,9 @@ export class BiodataForm {
     }
     const { PhotoDialog } = await import('../photo/photo-dialog');
     const result = await firstValueFrom(
-      this.dialog.open<unknown, File, string>(PhotoDialog, { data: file, width: '560px', maxWidth: '96vw' }).afterClosed(),
+      this.dialog
+        .open<unknown, File, string>(PhotoDialog, { data: normalizePhotoFile(file), width: '560px', maxWidth: '96vw' })
+        .afterClosed(),
     );
     if (result) this.store.setPhoto(result);
   }
