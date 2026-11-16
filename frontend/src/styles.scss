@@ -256,3 +256,9 @@ img {
 .sp-dense {
   @include mat.form-field-density(-2);
 }
+
+// While Razorpay's checkout window is open, hide every Material overlay (the purchase dialog
+// and its backdrop). They sit above the page and would otherwise cover the payment window.
+body.sp-checkout-open .cdk-overlay-container {
+  visibility: hidden;
+}

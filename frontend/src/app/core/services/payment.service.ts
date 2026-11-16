@@ -68,21 +68,34 @@ export class PaymentService {
     const Razorpay = (this.document.defaultView as unknown as { Razorpay?: RazorpayCtor }).Razorpay;
     if (!Razorpay) throw new PaymentError('unavailable');
 
-    const success = await new Promise<RazorpaySuccess>((resolve, reject) => {
-      const checkout = new Razorpay({
-        key: order.keyId,
-        order_id: order.orderId,
-        amount: order.amount,
-        currency: order.currency,
-        name: SITE_NAME,
-        description,
-        theme: { color: '#B3261E' },
-        handler: (response: RazorpaySuccess) => resolve(response),
-        modal: { ondismiss: () => reject(new PaymentError('cancelled')) },
+    // Our own dialogs would otherwise cover Razorpay's window (see .sp-checkout-open in styles.scss).
+    const body = this.document.body;
+    body.classList.add('sp-checkout-open');
+    let success: RazorpaySuccess;
+    try {
+      success = await new Promise<RazorpaySuccess>((resolve, reject) => {
+        let failedOnce = false;
+        const checkout = new Razorpay({
+          key: order.keyId,
+          order_id: order.orderId,
+          amount: order.amount,
+          currency: order.currency,
+          name: SITE_NAME,
+          description,
+          theme: { color: '#B3261E' },
+          handler: (response: RazorpaySuccess) => resolve(response),
+          // Closing Razorpay's window ends the attempt. If a payment failed before that, report
+          // the failure instead of a plain cancel.
+          modal: { ondismiss: () => reject(new PaymentError(failedOnce ? 'failed' : 'cancelled')) },
+        });
+        // A failed payment leaves Razorpay's window open so the buyer can retry another method.
+        // The attempt is only over once the payment succeeds or the window is closed.
+        checkout.on('payment.failed', () => (failedOnce = true));
+        checkout.open();
       });
-      checkout.on('payment.failed', () => reject(new PaymentError('failed')));
-      checkout.open();
-    });
+    } finally {
+      body.classList.remove('sp-checkout-open');
+    }
 
     try {
       return await firstValueFrom(
