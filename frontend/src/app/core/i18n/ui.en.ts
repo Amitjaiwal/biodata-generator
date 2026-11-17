@@ -291,6 +291,8 @@ export const UI_EN: Record<string, string> = {
   'b.premiumNote': 'Premium design. The preview is watermarked until you unlock it.',
   'b.unlock': 'Unlock',
   'b.unlocked': 'Unlocked',
+  'ph.relativesSurnames': "Enter relatives' surnames separated by commas.",
+  'b.hint.relativesSurnames': 'For example: Deshmukh, Patil, Jadhav. Shown under Family Details. Optional.',
   'b.age.auto': 'Calculated from the date of birth. You can change it.',
 
   'buy.title': 'Unlock this premium design',

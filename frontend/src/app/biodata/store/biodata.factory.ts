@@ -75,9 +75,18 @@ export function normalizeBiodata(raw: unknown): Biodata {
       fields.push({ id: fid, key: known ? (f.key as string) : null, label: known ? '' : str(f.label, 60), value: str(f.value) });
     }
     if (isBuiltIn) {
-      for (const d of FIELD_DEFS) {
-        if (d.section === s.key && !fieldIds.has(d.key)) fields.push({ id: d.key, key: d.key, label: '', value: '' });
-      }
+      // A built-in field added in a later release is put right after the field that precedes it in
+      // the catalogue, so older saved biodatas get it in the same place as new ones.
+      const defs = FIELD_DEFS.filter((d) => d.section === s.key);
+      defs.forEach((d, i) => {
+        if (fieldIds.has(d.key)) return;
+        const added: BiodataField = { id: d.key, key: d.key, label: '', value: '' };
+        const before = defs.slice(0, i).reverse().find((p) => fieldIds.has(p.key));
+        const at = before ? fields.findIndex((x) => x.id === before.key) : -1;
+        if (at >= 0) fields.splice(at + 1, 0, added);
+        else fields.push(added);
+        fieldIds.add(d.key);
+      });
     }
     sections.push({ id, key: s.key as SectionKey, title: str(s.title, 60), hidden: !!s.hidden, fields });
   }
