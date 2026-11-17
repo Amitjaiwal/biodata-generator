@@ -101,4 +101,8 @@ export interface FieldDef {
   /** Takes the full row width in the form and in grid layouts. */
   wide?: boolean;
   maxLength?: number;
+  /** The field has a placeholder text under the i18n key `ph.<key>`. */
+  placeholder?: boolean;
+  /** The field has helper text under the i18n key `b.hint.<key>`. */
+  hint?: boolean;
 }

@@ -43,6 +43,7 @@ interface Option {
             cdkAutosizeMaxRows="5"
             [value]="value()"
             [attr.maxlength]="def().maxLength ?? null"
+            [attr.placeholder]="placeholder()"
             (input)="emit($event)"
           ></textarea>
         }
@@ -100,6 +101,8 @@ export class FieldInput {
   protected readonly today = new Date().toISOString().slice(0, 10);
   protected readonly matcher: ErrorStateMatcher = { isErrorState: () => !!this.error() };
   protected readonly listId = 'dl-' + Math.random().toString(36).slice(2, 9);
+
+  protected readonly placeholder = computed(() => (this.def().placeholder ? this.i18n.t('ph.' + this.def().key) : null));
 
   protected readonly options = computed<Option[]>(() => {
     const group = this.def().options;

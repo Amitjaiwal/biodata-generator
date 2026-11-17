@@ -50,6 +50,7 @@ export const FIELD_DEFS: readonly FieldDef[] = [
   { key: 'familyType', section: 'family', type: 'select', options: 'familyType' },
   { key: 'familyValues', section: 'family', type: 'select', options: 'familyValues' },
   { key: 'nativePlace', section: 'family', type: 'text', maxLength: 80 },
+  { key: 'relativesSurnames', section: 'family', type: 'textarea', wide: true, maxLength: 300, placeholder: true, hint: true },
   { key: 'familyAddress', section: 'family', type: 'textarea', wide: true, maxLength: 200 },
   // Lifestyle
   { key: 'diet', section: 'lifestyle', type: 'select', options: 'diet' },

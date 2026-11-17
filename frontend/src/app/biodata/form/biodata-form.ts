@@ -537,7 +537,8 @@ export class BiodataForm {
   }
 
   protected hintOf(f: BiodataField): string {
-    return f.key === 'age' && this.store.fieldValue('personal', 'dob') ? this.t('b.age.auto') : '';
+    if (f.key === 'age') return this.store.fieldValue('personal', 'dob') ? this.t('b.age.auto') : '';
+    return this.defOf(f)?.hint ? this.t('b.hint.' + f.key) : '';
   }
 
   protected setRelation(id: string, relation: MemberRelation): void {
