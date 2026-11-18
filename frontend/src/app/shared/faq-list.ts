@@ -3,7 +3,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { I18nService } from '../core/i18n/i18n.service';
 import { TEMPLATES } from '../templates/registry';
 
-const COUNT = 8;
+const COUNT = 14;
 const FREE_COUNT = TEMPLATES.filter((x) => x.tier === 'free').length;
 
 export interface FaqItem {

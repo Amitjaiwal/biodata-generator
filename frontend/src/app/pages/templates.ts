@@ -7,12 +7,14 @@ import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { map } from 'rxjs';
 import { environment } from '../../environments/environment';
+import { LANDINGS } from '../core/data/landings';
 import { CATEGORY_SEO } from '../core/data/site';
 import { I18nService } from '../core/i18n/i18n.service';
 import { TEMPLATE_CATEGORIES, TemplateCategory, TemplateDefinition, TemplateTier } from '../core/models/template.model';
 import { EntitlementService } from '../core/services/entitlement.service';
 import { PricingService } from '../core/services/pricing.service';
 import { SeoService } from '../core/services/seo.service';
+import { RichText } from '../shared/rich-text';
 import { TemplateCard } from '../shared/template-card';
 import { TEMPLATES, templatesIn } from '../templates/registry';
 
@@ -23,7 +25,7 @@ const PREMIUM_COUNT = TEMPLATES.filter((x) => x.tier === 'premium').length;
 /** Template gallery. Each category has its own URL so it can be found through search. */
 @Component({
   selector: 'app-templates',
-  imports: [RouterLink, MatButtonModule, MatIconModule, TemplateCard],
+  imports: [RouterLink, MatButtonModule, MatIconModule, TemplateCard, RichText],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <section class="top">
@@ -76,7 +78,7 @@ const PREMIUM_COUNT = TEMPLATES.filter((x) => x.tier === 'premium').length;
       }
       <div class="grid">
         @for (def of list(); track def.id) {
-          <app-template-card [def]="def" (preview)="preview($event)" />
+          <app-template-card [def]="def" [level]="2" (preview)="preview($event)" />
         }
       </div>
       @if (!list().length) {
@@ -85,6 +87,32 @@ const PREMIUM_COUNT = TEMPLATES.filter((x) => x.tier === 'premium').length;
           <a matButton="tonal" routerLink="/templates">{{ t('gallery.reset') }}</a>
         </div>
       }
+    </section>
+
+    <section class="container about">
+      @if (category(); as c) {
+        <h2>{{ t('tpl.about') }}</h2>
+        @for (para of seo[c].about; track para) {
+          <p><app-rich [text]="para" /></p>
+        }
+      } @else {
+        <h2>{{ t('tpl.intro.title') }}</h2>
+        <p>{{ t('tpl.intro.p1') }}</p>
+        <p><app-rich [text]="t('tpl.intro.p2')" /></p>
+      }
+      <h2>{{ t('tpl.browse') }}</h2>
+      <ul class="browse">
+        @for (c of categories; track c) {
+          <li>
+            <a [routerLink]="['/templates', c]" [class.on]="category() === c">{{ seo[c].h1 }}</a>
+          </li>
+        }
+        @for (l of guides; track l.slug) {
+          <li>
+            <a [routerLink]="'/' + l.slug" [attr.lang]="l.lang">{{ l.navLabel }}</a>
+          </li>
+        }
+      </ul>
     </section>
   `,
   styles: `
@@ -213,6 +241,44 @@ const PREMIUM_COUNT = TEMPLATES.filter((x) => x.tier === 'premium').length;
       padding: 48px 0;
       text-align: center;
     }
+    .about {
+      max-width: 880px;
+      padding-bottom: 72px;
+    }
+    .about h2 {
+      margin: 0 0 12px;
+      font-size: clamp(1.3rem, 2.6vw, 1.7rem);
+    }
+    .about h2:not(:first-child) {
+      margin-top: 36px;
+    }
+    .about p {
+      margin: 0 0 12px;
+      color: #4a423c;
+    }
+    .browse {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 10px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .browse a {
+      display: inline-block;
+      padding: 7px 14px;
+      border: 1px solid var(--sp-border);
+      border-radius: 999px;
+      background: #fff;
+      color: var(--sp-ink);
+      font-size: 0.9rem;
+      text-decoration: none;
+    }
+    .browse a:hover,
+    .browse a.on {
+      border-color: var(--sp-primary);
+      color: var(--sp-primary);
+    }
     .empty p {
       margin-bottom: 14px;
       color: var(--sp-muted);
@@ -253,6 +319,9 @@ export class Templates {
   protected readonly t = inject(I18nService).t;
 
   protected readonly categories = TEMPLATE_CATEGORIES;
+  protected readonly seo = CATEGORY_SEO;
+  /** Guides linked from the bottom of the gallery. */
+  protected readonly guides = LANDINGS.filter((l) => l.lang === 'en');
   protected readonly tiers: TierFilter[] = ['all', 'free', 'premium'];
   protected readonly total = TEMPLATES.length;
   protected readonly premiumCount = PREMIUM_COUNT;
@@ -322,8 +391,9 @@ export class Templates {
         title: c ? CATEGORY_SEO[c].title : `Marriage Biodata Templates: ${TEMPLATES.length} Free and Premium Designs | ShubhPatra`,
         description: c
           ? CATEGORY_SEO[c].description
-          : `Browse ${TEMPLATES.length} original marriage biodata templates: royal, gold, traditional, Hindu, Marathi, Muslim, Sikh, Christian, Jain, modern bride and groom designs. Free and premium, with PDF download.`,
+          : `Browse ${TEMPLATES.length} original marriage biodata templates in royal, gold, traditional, Hindu, Marathi, Muslim, Sikh, Christian and Jain styles. Free and premium.`,
         path,
+        pageType: 'CollectionPage',
         jsonLd: [
           {
             '@context': 'https://schema.org',

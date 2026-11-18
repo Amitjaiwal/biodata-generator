@@ -22,14 +22,24 @@ import { TemplateDefinition } from '../core/models/template.model';
           <ng-container *ngComponentOutlet="def().component; inputs: inputs()" />
         </div>
       </ng-template>
-      @if (lazy()) {
-        @defer (on viewport) {
-          <ng-container *ngTemplateOutlet="page" />
-        } @placeholder {
-          <div class="ph" [style.background]="def().accent"></div>
+      @switch (lazy()) {
+        @case (true) {
+          @defer (on viewport) {
+            <ng-container *ngTemplateOutlet="page" />
+          } @placeholder {
+            <div class="ph" [style.background]="def().accent"></div>
+          }
         }
-      } @else {
-        <ng-container *ngTemplateOutlet="page" />
+        @case ('idle') {
+          @defer (on idle) {
+            <ng-container *ngTemplateOutlet="page" />
+          } @placeholder {
+            <div class="ph paper" [style.border-top-color]="def().accent"></div>
+          }
+        }
+        @default {
+          <ng-container *ngTemplateOutlet="page" />
+        }
       }
     </div>
   `,
@@ -59,12 +69,18 @@ import { TemplateDefinition } from '../core/models/template.model';
       height: 100%;
       opacity: 0.07;
     }
+    /* Blank paper shown until an above-the-fold preview is built, so the hero keeps its shape. */
+    .ph.paper {
+      border-top: 14px solid;
+      background: #fff;
+      opacity: 1;
+    }
   `,
 })
 export class TemplateThumb {
   readonly def = input.required<TemplateDefinition>();
-  /** Build the miniature only when it scrolls into view. */
-  readonly lazy = input(true);
+  /** true: build when scrolled into view. 'idle': build once the browser is idle (for above-the-fold art). false: build now. */
+  readonly lazy = input<boolean | 'idle'>(true);
 
   private readonly t = inject(I18nService).t;
   protected readonly label = computed(() => this.t('thumb.label', { name: this.def().name }));

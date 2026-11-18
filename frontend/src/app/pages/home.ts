@@ -8,7 +8,7 @@ import { I18nService } from '../core/i18n/i18n.service';
 import { TemplateDefinition } from '../core/models/template.model';
 import { PricingService } from '../core/services/pricing.service';
 import { SITE_NAME, SeoService } from '../core/services/seo.service';
-import { FaqList, faqItems } from '../shared/faq-list';
+import { FaqList } from '../shared/faq-list';
 import { PricingCards } from '../shared/pricing-cards';
 import { TemplateCard } from '../shared/template-card';
 import { TemplateThumb } from '../shared/template-thumb';
@@ -36,9 +36,9 @@ import { TEMPLATES, findTemplate, templatesIn } from '../templates/registry';
           </ul>
         </div>
         <div class="stack" aria-hidden="true">
-          <app-template-thumb class="sheet s1" [def]="hero[0]" [lazy]="false" />
-          <app-template-thumb class="sheet s2" [def]="hero[1]" [lazy]="false" />
-          <app-template-thumb class="sheet s3" [def]="hero[2]" [lazy]="false" />
+          <app-template-thumb class="sheet s1" [def]="hero[0]" lazy="idle" />
+          <app-template-thumb class="sheet s2" [def]="hero[1]" lazy="idle" />
+          <app-template-thumb class="sheet s3" [def]="hero[2]" lazy="idle" />
         </div>
       </div>
     </section>
@@ -52,12 +52,24 @@ import { TEMPLATES, findTemplate, templatesIn } from '../templates/registry';
       </div>
     </section>
 
+    <section class="section" id="free-biodata-maker">
+      <div class="container intro">
+        <h2>{{ t('home.intro.title') }}</h2>
+        <p>{{ t('home.intro.p1') }}</p>
+        <p>{{ t('home.intro.p2', { n: total, free: free }) }}</p>
+        <p class="more-link">
+          <a routerLink="/free-marriage-biodata-maker">{{ t('home.intro.link') }}</a>
+        </p>
+      </div>
+    </section>
+
     <section class="section" id="templates">
       <div class="container">
         <div class="section-head">
           <span class="eyebrow">{{ t('home.featured.eyebrow') }}</span>
           <h2>{{ t('home.featured.title') }}</h2>
           <p>{{ t('home.featured.sub') }}</p>
+          <p>{{ t('home.featured.more') }}</p>
         </div>
         <div class="tpl-grid">
           @for (def of featured; track def.id) {
@@ -113,7 +125,31 @@ import { TEMPLATES, findTemplate, templatesIn } from '../templates/registry';
       </div>
     </section>
 
-    <section class="section section-alt" id="features">
+    <section class="section section-alt" id="biodata-format">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">{{ t('home.format.eyebrow') }}</span>
+          <h2>{{ t('home.format.title') }}</h2>
+          <p>{{ t('home.format.sub') }}</p>
+        </div>
+        <div class="format-grid">
+          @for (n of formatItems; track n) {
+            <div class="format-item">
+              <h3>{{ t('home.format.' + n + '.t') }}</h3>
+              <p>{{ t('home.format.' + n + '.d') }}</p>
+            </div>
+          }
+        </div>
+        <ul class="format-links">
+          <li><a routerLink="/marriage-biodata-format">{{ t('home.format.guide') }}</a></li>
+          <li><a routerLink="/marriage-biodata-for-bride">{{ t('home.format.bride') }}</a></li>
+          <li><a routerLink="/marriage-biodata-for-groom">{{ t('home.format.groom') }}</a></li>
+          <li><a routerLink="/hindu-marriage-biodata">{{ t('home.format.hindu') }}</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" id="features">
       <div class="container">
         <div class="section-head">
           <span class="eyebrow">{{ t('home.features.eyebrow') }}</span>
@@ -521,8 +557,55 @@ import { TEMPLATES, findTemplate, templatesIn } from '../templates/registry';
       height: 16px;
       font-size: 16px;
     }
+    .intro {
+      max-width: 860px;
+    }
+    .intro h2 {
+      font-size: clamp(1.6rem, 3.2vw, 2.2rem);
+    }
+    .intro p {
+      margin-top: 14px;
+      color: #4a423c;
+      font-size: 1.05rem;
+    }
+    .more-link a,
+    .format-links a {
+      color: var(--sp-primary);
+      font-weight: 600;
+      text-underline-offset: 3px;
+    }
+    .format-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+    .format-item {
+      padding: 20px 22px;
+      border: 1px solid var(--sp-border);
+      border-radius: var(--sp-radius);
+      background: #fff;
+    }
+    .format-item h3 {
+      font-family: var(--sp-font);
+      font-size: 1.05rem;
+      font-weight: 600;
+    }
+    .format-item p {
+      margin-top: 6px;
+      color: var(--sp-muted);
+      font-size: 0.93rem;
+    }
+    .format-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 22px;
+      margin: 26px 0 0;
+      padding: 0;
+      list-style: none;
+    }
     .trust-band {
       padding: 72px 0;
+      border-top: 1px solid var(--sp-border);
     }
     .trust-grid {
       display: grid;
@@ -558,13 +641,15 @@ import { TEMPLATES, findTemplate, templatesIn } from '../templates/registry';
     }
     @media (max-width: 1000px) {
       .comm-grid,
-      .trust-grid {
+      .trust-grid,
+      .format-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
     }
     @media (max-width: 620px) {
       .comm-grid,
-      .trust-grid {
+      .trust-grid,
+      .format-grid {
         grid-template-columns: 1fr;
       }
       .trust-band {
@@ -595,8 +680,12 @@ export class Home {
   protected readonly steps = [
     { n: 1, icon: 'grid_view' },
     { n: 2, icon: 'edit_note' },
-    { n: 3, icon: 'download_for_offline' },
+    { n: 3, icon: 'school' },
+    { n: 4, icon: 'family_restroom' },
+    { n: 5, icon: 'tune' },
+    { n: 6, icon: 'download_for_offline' },
   ];
+  protected readonly formatItems = [1, 2, 3, 4, 5, 6];
   protected readonly features = [
     { n: 1, icon: 'visibility' },
     { n: 2, icon: 'swap_horiz' },
@@ -612,25 +701,27 @@ export class Home {
     pricing.load();
 
     effect(() => {
-      const faq = faqItems(this.t);
       seo.set({
-        title: 'Marriage Biodata Maker Online | Free Templates and PDF Download | ShubhPatra',
+        title: 'Free Marriage Biodata Maker Online – Create Biodata | ShubhPatra',
         description:
-          `Create your marriage biodata online in minutes. ${TEMPLATES.length} original designs for Hindu, Marathi, Muslim, Sikh, Christian and Jain families, live preview, and PDF download in English, Hindi and Marathi.`,
+          'Create your marriage biodata online for free with ShubhPatra. Choose beautiful marriage biodata templates, customize your details and download your biodata as PDF.',
         path: '/',
         jsonLd: [
-          // Tells search engines the site's name and logo (used for the site name and logo in results).
+          // The site name and logo, which search engines can use in results.
           {
             '@context': 'https://schema.org',
             '@type': 'WebSite',
+            '@id': environment.siteUrl + '/#website',
             name: SITE_NAME,
-            alternateName: ['Marriage Biodata Maker', 'ShubhPatra Marriage Biodata Maker'],
+            alternateName: ['Free Marriage Biodata Maker Online'],
             url: environment.siteUrl + '/',
             inLanguage: ['en', 'hi', 'mr'],
+            publisher: { '@id': environment.siteUrl + '/#organization' },
           },
           {
             '@context': 'https://schema.org',
             '@type': 'Organization',
+            '@id': environment.siteUrl + '/#organization',
             name: SITE_NAME,
             url: environment.siteUrl + '/',
             logo: { '@type': 'ImageObject', url: environment.siteUrl + '/icon-512.png', width: 512, height: 512 },
@@ -638,7 +729,7 @@ export class Home {
           {
             '@context': 'https://schema.org',
             '@type': 'WebApplication',
-            name: SITE_NAME,
+            name: 'ShubhPatra Marriage Biodata Maker',
             url: environment.siteUrl + '/',
             applicationCategory: 'UtilitiesApplication',
             operatingSystem: 'Any',
@@ -659,15 +750,6 @@ export class Home {
                 priceCurrency: 'INR',
               },
             ],
-          },
-          {
-            '@context': 'https://schema.org',
-            '@type': 'FAQPage',
-            mainEntity: faq.map((f) => ({
-              '@type': 'Question',
-              name: f.q,
-              acceptedAnswer: { '@type': 'Answer', text: f.a },
-            })),
           },
         ],
       });

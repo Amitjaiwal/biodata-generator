@@ -15,6 +15,15 @@
     <link rel="icon" type="image/svg+xml" sizes="any" href="/favicon.svg" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/manifest.webmanifest" />
+    <!-- Fallback faces sized to match the web fonts, so text does not re-wrap when Inter and Fraunces load.
+         They must be inline: the global stylesheet loads after first paint, and a late fallback shifts the page.
+         Measured against the real fonts: Inter is ~6% wider than Arial; Fraunces is ~9% narrower than Times. -->
+    <style>
+      @font-face { font-family: "Inter Fallback"; src: local("Arial"), local("Helvetica"); font-weight: 400 500; size-adjust: 106.2%; }
+      @font-face { font-family: "Inter Fallback"; src: local("Arial Bold"), local("Arial-BoldMT"), local("Helvetica Bold"), local("Helvetica-Bold"); font-weight: 600 800; size-adjust: 101%; }
+      @font-face { font-family: "Fraunces Fallback"; src: local("Times New Roman"), local("Times"); font-weight: 400 600; size-adjust: 91.2%; }
+      @font-face { font-family: "Fraunces Fallback"; src: local("Times New Roman Bold"), local("TimesNewRomanPS-BoldMT"), local("Times Bold"), local("Times-Bold"); font-weight: 700 900; size-adjust: 94%; }
+    </style>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link

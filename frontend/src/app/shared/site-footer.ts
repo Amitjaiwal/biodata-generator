@@ -18,20 +18,20 @@ import { BrandLogo } from './brand-logo';
           <p class="note">{{ t('footer.note') }}</p>
         </div>
         <nav [attr.aria-label]="t('footer.product')">
-          <h3>{{ t('footer.product') }}</h3>
+          <h3 aria-level="2">{{ t('footer.product') }}</h3>
           <a routerLink="/templates">{{ t('nav.templates') }}</a>
           <a routerLink="/create">{{ t('nav.create') }}</a>
           <a routerLink="/pricing">{{ t('nav.pricing') }}</a>
           <button type="button" (click)="restore()">{{ t('footer.restore') }}</button>
         </nav>
         <nav [attr.aria-label]="t('footer.formats')">
-          <h3>{{ t('footer.formats') }}</h3>
+          <h3 aria-level="2">{{ t('footer.formats') }}</h3>
           @for (l of landings; track l.slug) {
             <a [routerLink]="'/' + l.slug">{{ l.navLabel }}</a>
           }
         </nav>
         <nav [attr.aria-label]="t('footer.company')">
-          <h3>{{ t('footer.company') }}</h3>
+          <h3 aria-level="2">{{ t('footer.company') }}</h3>
           <a routerLink="/privacy">{{ t('footer.privacy') }}</a>
           <a routerLink="/terms">{{ t('footer.terms') }}</a>
           <a routerLink="/refund-policy">{{ t('footer.refund') }}</a>
