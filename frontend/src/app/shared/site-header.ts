@@ -24,7 +24,7 @@ import { BrandLogo } from './brand-logo';
         </nav>
 
         <div class="actions">
-          <button matButton class="lang" [matMenuTriggerFor]="langMenu" [attr.aria-label]="t('nav.language')">
+          <button matButton class="lang" [matMenuTriggerFor]="langMenu" [attr.aria-label]="t('nav.language') + ': ' + names[i18n.lang()]">
             <mat-icon>language</mat-icon>
             <span>{{ names[i18n.lang()] }}</span>
           </button>

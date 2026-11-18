@@ -61,6 +61,7 @@ const ZOOM_STEPS = [0.75, 1, 1.25, 1.5];
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
+    <h1 class="sr-only">{{ t('b.pageTitle') }}</h1>
     <div class="builder" [class.view-preview]="mobile() === 'preview'">
       <div class="toolbar">
         <div class="container tb">

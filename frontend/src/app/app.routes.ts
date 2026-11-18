@@ -1,5 +1,5 @@
 import { CanMatchFn, Routes } from '@angular/router';
-import { LANDINGS } from './core/data/landings';
+import { LANDINGS, LANDING_ALIASES, findLanding } from './core/data/landings';
 import { TEMPLATE_CATEGORIES } from './core/models/template.model';
 
 const knownCategory: CanMatchFn = (_route, segments) =>
@@ -23,5 +23,7 @@ export const routes: Routes = [
   { path: 'refund-policy', loadComponent: legal, data: { doc: 'refund' } },
   { path: 'contact', loadComponent: legal, data: { doc: 'contact' } },
   ...LANDINGS.map((l) => ({ path: l.slug, loadComponent: landing, data: { landing: l } })),
+  // Earlier addresses of renamed pages. They render the new page, whose canonical URL is the new address.
+  ...LANDING_ALIASES.map((a) => ({ path: a.slug, loadComponent: landing, data: { landing: findLanding(a.to) } })),
   { path: '**', loadComponent: () => import('./pages/not-found').then((m) => m.NotFound) },
 ];

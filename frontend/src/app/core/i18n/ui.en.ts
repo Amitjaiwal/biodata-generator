@@ -23,9 +23,9 @@ export const UI_EN: Record<string, string> = {
   'common.or': 'or',
 
   'home.hero.badge': 'No sign-up · Private · Print-ready PDF',
-  'home.hero.title': 'Create Your Perfect Marriage Biodata Online',
+  'home.hero.title': 'Free Marriage Biodata Maker Online',
   'home.hero.sub':
-    'Fill in your details once, choose from {n} beautiful designs and download a print-ready A4 PDF in English, Hindi or Marathi.',
+    'Create a professional marriage biodata in minutes. Fill in your details once, choose from {n} beautiful marriage biodata templates and download a print-ready A4 PDF in English, Hindi or Marathi.',
   'home.hero.cta1': 'Create Biodata',
   'home.hero.cta2': 'Explore Templates',
   'home.hero.t1': 'No login required',
@@ -38,22 +38,16 @@ export const UI_EN: Record<string, string> = {
   'stat.price': 'To get started',
 
   'home.featured.eyebrow': 'Templates',
-  'home.featured.title': 'Designs families are proud to share',
+  'home.featured.title': 'Choose Beautiful Marriage Biodata Templates',
   'home.featured.sub':
-    'Traditional, royal, modern and minimal styles. Every design uses the same details, so you can switch at any time.',
+    'Traditional, royal, modern and minimal marriage biodata templates. Every design uses the same details, so you can preview several with your own information and switch at any time.',
   'home.featured.all': 'See all templates',
 
   'home.how.eyebrow': 'How it works',
-  'home.how.title': 'Ready in three simple steps',
-  'home.how.s1.t': 'Pick a design',
-  'home.how.s1.d': 'Browse the gallery and choose a style that suits your family.',
-  'home.how.s2.t': 'Fill in your details',
-  'home.how.s2.d': 'Add personal, family and horoscope details and a photo. Skip anything you do not need.',
-  'home.how.s3.t': 'Download your PDF',
-  'home.how.s3.d': 'Check the live preview and download a high-quality A4 PDF to print or share on WhatsApp.',
+  'home.how.title': 'How to Create Marriage Biodata Online',
 
   'home.features.eyebrow': 'Features',
-  'home.features.title': 'Everything you need for a perfect biodata',
+  'home.features.title': 'Why Choose ShubhPatra Marriage Biodata Maker?',
   'home.f1.t': 'Live preview',
   'home.f1.d': 'See the finished page update as you type. What you see is what you download.',
   'home.f2.t': 'Switch designs instantly',
@@ -96,30 +90,49 @@ export const UI_EN: Record<string, string> = {
   'price.all.cta': 'Get the collection',
   'price.note': 'Prices include all taxes. Payments are processed securely by Razorpay.',
 
-  'home.faq.title': 'Frequently asked questions',
-  'faq.q1': 'Is ShubhPatra free to use?',
+  'home.faq.title': 'Frequently Asked Questions',
+
+  'faq.q1': 'How can I create marriage biodata online for free?',
   'faq.a1':
-    'Yes. {free} templates are completely free, with unlimited PDF downloads and no watermark. Premium designs need a small one-time payment.',
-  'faq.q2': 'Do I need to create an account?',
+    'Open the builder, choose one of the {free} free templates, fill in your details and download the A4 PDF. There is no sign-up and no watermark on free designs. Premium designs are optional and need a one-time payment.',
+  'faq.q2': 'Which is the best free marriage biodata maker?',
   'faq.a2':
-    'No. There is no sign-up or login. Your biodata is saved in this browser, so you can come back and edit it later on the same device.',
-  'faq.q3': 'Where are my details and photo stored?',
+    'The best one is the one that fits your needs. ShubhPatra is built for Indian families: {n} original designs for Hindu, Marathi, Muslim, Sikh, Christian and Jain biodatas, English, Hindi and Marathi labels, a live preview, photo cropping and a PDF that prints well. Your details stay in your browser and you can start without signing up.',
+  'faq.q3': 'Can I download marriage biodata in PDF format?',
   'faq.a3':
-    'Only on your own device. Your biodata and photo are not uploaded to our servers. The PDF is created inside your browser.',
-  'faq.q4': 'Can I make a biodata in Hindi or Marathi?',
+    'Yes. Every design downloads as a high-resolution A4 PDF. Free designs download without a watermark. A premium design downloads without a watermark after a one-time payment; until then you can preview it with your own details.',
+  'faq.q4': 'How do I create marriage biodata for a bride?',
   'faq.a4':
-    'Yes. Choose English, Hindi or Marathi and every heading and label changes. You can type your own details in any language.',
-  'faq.q5': 'Can I change the template after filling the form?',
+    'Choose a design (the Modern Bride category has soft, modern options), then add her name, date of birth, height, education, profession and family details and, if you wish, interests and partner expectations. Horoscope details are optional. Preview it and download the PDF.',
+  'faq.q5': 'How do I create marriage biodata for a groom?',
   'faq.a5':
-    'Yes. Your details are kept separately from the design, so you can switch templates at any time without typing anything again.',
-  'faq.q6': 'Can I leave out horoscope, caste or income?',
+    'Choose a design (the Modern Groom category has bold, clean options), then add his name, date of birth, height, education, occupation, employer and family details and, if you wish, interests and partner expectations. Horoscope details are optional. Preview it and download the PDF.',
+  'faq.q6': 'What information should be included in marriage biodata?',
   'faq.a6':
-    'Yes. Every field is optional except the name. Empty fields are left out automatically, and you can hide whole sections or add your own fields.',
-  'faq.q7': 'How do I pay for a premium template?',
+    'Most Indian marriage biodatas include personal details, education and career, family details, birth and horoscope details for families who use them, lifestyle, partner expectations and contact details. Every field is optional except the name.',
+  'faq.q7': 'Can I edit my marriage biodata after creating it?',
   'faq.a7':
-    'Payments are handled by Razorpay. You can pay by UPI, debit or credit card, net banking or wallet. It is a one-time payment with no subscription.',
-  'faq.q8': 'Will the PDF print well?',
+    'Yes. Your biodata is saved in your browser, so you can come back on the same device, edit any field and download it again. Switching the template or the language does not erase what you typed. Clearing your browser data removes it, so keep a copy of your PDF.',
+  'faq.q8': 'Do I need to create an account?',
   'faq.a8':
+    'No. There is no sign-up or login. Your biodata is saved in this browser, so you can come back and edit it later on the same device.',
+  'faq.q9': 'Where are my details and photo stored?',
+  'faq.a9':
+    'Only on your own device. Your biodata and photo are not uploaded to our servers. The PDF is created inside your browser.',
+  'faq.q10': 'Can I make a biodata in Hindi or Marathi?',
+  'faq.a10':
+    'Yes. Choose English, Hindi or Marathi and every heading and label changes. You can type your own details in any language.',
+  'faq.q11': 'Can I change the template after filling the form?',
+  'faq.a11':
+    'Yes. Your details are kept separately from the design, so you can switch templates at any time without typing anything again.',
+  'faq.q12': 'Can I leave out horoscope, caste or income?',
+  'faq.a12':
+    'Yes. Every field is optional except the name. Empty fields are left out automatically, and you can hide whole sections or add your own fields.',
+  'faq.q13': 'How do I pay for a premium template?',
+  'faq.a13':
+    'Payments are handled by Razorpay. You can pay by UPI, debit or credit card, net banking or wallet. It is a one-time payment with no subscription.',
+  'faq.q14': 'Will the PDF print well?',
+  'faq.a14':
     'Yes. The PDF is A4 size at high resolution, suitable for colour printing and for sharing on WhatsApp or email.',
 
   'home.cta.title': 'Your biodata is a few minutes away',
@@ -186,6 +199,69 @@ export const UI_EN: Record<string, string> = {
   'home.trust.4.d':
     'High-resolution A4 pages that look sharp on paper and on a phone screen.',
 
+  'home.intro.title': 'Create Your Marriage Biodata Online for Free',
+  'home.intro.p1':
+    'ShubhPatra is an online marriage biodata maker for Indian families. You do not need Word, Photoshop or any design skills: open the builder, fill in your details and watch your biodata take shape in the live preview.',
+  'home.intro.p2':
+    '{free} of our {n} templates are free to use. They download as a clean A4 PDF with no watermark and no sign-up. If you fall in love with a premium design, you can try it with your own details first and pay once only if you want it.',
+  'home.intro.link': 'Read about the free marriage biodata maker',
+  'home.featured.more':
+    'Every template lets you add a photo, change the heading and blessing, hide sections you do not need, add your own fields and choose a larger or smaller text size.',
+  'home.how.s1.t': 'Choose a marriage biodata template',
+  'home.how.s1.d':
+    'Browse free and premium designs, preview them with sample details and pick one that suits your family and community.',
+  'home.how.s2.t': 'Enter personal information',
+  'home.how.s2.d':
+    'Add your name, date of birth, height, religion, caste, mother tongue, marital status and an optional photo. Birth and horoscope details are optional.',
+  'home.how.s3.t': 'Add education and professional details',
+  'home.how.s3.d':
+    'Fill in your qualification, college, occupation, company, work location and income. Leave out anything you prefer not to share.',
+  'home.how.s4.t': 'Add family information',
+  'home.how.s4.d':
+    "Add your parents and their occupations, brothers and sisters, native place and relatives' surnames.",
+  'home.how.s5.t': 'Customize your biodata',
+  'home.how.s5.d':
+    'Change the heading and blessing, hide or reorder sections, add your own fields and switch between English, Hindi and Marathi.',
+  'home.how.s6.t': 'Preview and download your marriage biodata',
+  'home.how.s6.d':
+    'Check the live preview, then download a high-resolution A4 PDF to print or share on WhatsApp.',
+  'home.format.eyebrow': 'Biodata format',
+  'home.format.title': 'Marriage Biodata Format for Indian Brides and Grooms',
+  'home.format.sub':
+    'An Indian marriage biodata usually covers the details below. Every field is optional except the name, so keep only what your family is comfortable sharing.',
+  'home.format.1.t': 'Personal details',
+  'home.format.1.d':
+    'Full name, date of birth, height, religion, caste, mother tongue, marital status and a recent photograph.',
+  'home.format.2.t': 'Birth and horoscope',
+  'home.format.2.d':
+    'Birth time and place, rashi, nakshatra, gotra and manglik status, for families who match kundli.',
+  'home.format.3.t': 'Education and career',
+  'home.format.3.d':
+    'Qualification, college, occupation, employer, work location and annual income.',
+  'home.format.4.t': 'Family details',
+  'home.format.4.d':
+    "Parents and their occupations, brothers and sisters, family type, native place and relatives' surnames.",
+  'home.format.5.t': 'Lifestyle and expectations',
+  'home.format.5.d':
+    'Diet, habits and interests, and a few lines on what you are looking for in a partner.',
+  'home.format.6.t': 'Contact details',
+  'home.format.6.d':
+    'Mobile number, email and the family address, shared only with people you send the biodata to.',
+  'home.format.guide': 'Read the marriage biodata format guide',
+  'home.format.bride': 'Marriage biodata for bride',
+  'home.format.groom': 'Marriage biodata for groom',
+  'home.format.hindu': 'Hindu marriage biodata format',
+  'landing.related': 'More marriage biodata guides',
+  'landing.allTemplates': 'Marriage biodata templates',
+  'landing.home': 'ShubhPatra home',
+  'tpl.about': 'About these designs',
+  'tpl.browse': 'Browse by community and style',
+  'tpl.intro.title': 'Free and premium marriage biodata templates',
+  'tpl.intro.p1':
+    'Every design here is original and works with the same biodata form. Fill in your details once, preview any template with your own information and switch between designs without typing anything again.',
+  'tpl.intro.p2':
+    'Free templates download as an A4 PDF without a watermark. Premium templates can be previewed with your own details, and you pay once only if you want the watermark-free download. See the [free marriage biodata maker](/free-marriage-biodata-maker) page or the [marriage biodata format](/marriage-biodata-format) guide to get started.',
+
   'cat.traditional': 'Traditional',
   'cat.modern': 'Modern',
   'cat.royal': 'Royal',
@@ -202,6 +278,7 @@ export const UI_EN: Record<string, string> = {
   'cat.bride': 'Modern Bride',
   'cat.groom': 'Modern Groom',
 
+  'b.pageTitle': 'Create Marriage Biodata Online',
   'b.title': 'Create your biodata',
   'b.intro': 'All fields are optional except the name. Empty fields are left out automatically.',
   'b.tab.details': 'Details',

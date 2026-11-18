@@ -14,7 +14,7 @@ import { TemplateThumb } from './template-thumb';
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <article class="card">
-      <button type="button" class="shot" (click)="preview.emit(def())" [attr.aria-label]="t('gallery.preview') + ': ' + def().name">
+      <button type="button" class="shot" (click)="preview.emit(def())" [attr.aria-label]="shotLabel()">
         <app-template-thumb [def]="def()" />
         <span class="tier" [class.premium]="def().tier === 'premium'">
           @if (def().tier === 'premium') {
@@ -29,7 +29,7 @@ import { TemplateThumb } from './template-thumb';
         }
       </button>
       <div class="meta">
-        <h3>{{ def().name }}</h3>
+        <h3 [attr.aria-level]="level()">{{ def().name }}</h3>
         <p>{{ categories() }}</p>
       </div>
       <div class="actions">
@@ -83,14 +83,14 @@ import { TemplateThumb } from './template-thumb';
       padding: 4px 10px;
       border-radius: 999px;
       background: #e8f5ec;
-      color: var(--sp-success);
+      color: #125c34;
       font-size: 0.75rem;
       font-weight: 700;
       box-shadow: 0 1px 4px rgba(0, 0, 0, 0.14);
     }
     .tier.premium {
       background: #fff4d6;
-      color: #8a5a00;
+      color: #6e4600;
     }
     .new {
       position: absolute;
@@ -157,9 +157,18 @@ import { TemplateThumb } from './template-thumb';
 export class TemplateCard {
   readonly def = input.required<TemplateDefinition>();
   readonly preview = output<TemplateDefinition>();
+  /** Heading level of the design name. Use 2 where no H2 sits above the cards. */
+  readonly level = input(3);
 
   private readonly entitlements = inject(EntitlementService);
   protected readonly t = inject(I18nService).t;
+
+  /** The accessible name starts with the words shown on the card, then says what the button does. */
+  protected shotLabel(): string {
+    const d = this.def();
+    const tier = d.tier === 'premium' ? (this.unlocked() ? this.t('b.unlocked') : this.t('common.premium')) : this.t('common.free');
+    return [tier, d.isNew ? this.t('badge.new') : '', `${this.t('gallery.preview')}: ${d.name}`].filter(Boolean).join(', ');
+  }
 
   protected categories(): string {
     return this.def()

@@ -3,7 +3,7 @@
 // 404.html is the client-rendered app shell: static hosts serve it, with a 404 status, for any
 // unknown address, and the app then shows its own "Page not found" page.
 // Usage: SITE_URL=https://www.example.com node scripts/postbuild.mjs
-import { copyFileSync, existsSync, readdirSync, statSync, writeFileSync } from 'node:fs';
+import { copyFileSync, existsSync, readFileSync, readdirSync, statSync, writeFileSync } from 'node:fs';
 import { join, relative, sep } from 'node:path';
 
 const outDir = join(import.meta.dirname, '..', 'dist', 'frontend', 'browser');
@@ -24,15 +24,27 @@ function walk(dir, found = []) {
   return found;
 }
 
+const canonicalOf = (route) => {
+  const html = readFileSync(join(outDir, route, 'index.html'), 'utf8');
+  const tag = /<link\b[^>]*rel="canonical"[^>]*>/.exec(html.slice(0, html.indexOf('</head>')));
+  return tag ? (/href="([^"]*)"/.exec(tag[0]) ?? [])[1] : undefined;
+};
+
+// Only pages that are their own canonical address go in the sitemap. A page whose canonical points
+// elsewhere (an old address kept for visitors) must not be listed, or search engines get two answers
+// for one page. lastmod and priority are left out: search engines ignore a priority and distrust a
+// lastmod that is simply the build date of every page.
 const routes = walk(outDir)
   .filter((r) => !EXCLUDE.some((re) => re.test(r)))
+  .filter((r) => {
+    const own = r === '' ? siteUrl + '/' : `${siteUrl}/${r}`;
+    const canonical = canonicalOf(r);
+    if (canonical && canonical !== own) console.log(`sitemap: skipping /${r} (canonical is ${canonical})`);
+    return !canonical || canonical === own;
+  })
   .sort((a, b) => a.length - b.length || a.localeCompare(b));
 
-const priority = (r) => (r === '' ? '1.0' : r === 'templates' || r === 'create' ? '0.9' : r.includes('/') ? '0.7' : '0.8');
-const today = new Date().toISOString().slice(0, 10);
-const urls = routes
-  .map((r) => `  <url><loc>${siteUrl}/${r}</loc><lastmod>${today}</lastmod><priority>${priority(r)}</priority></url>`)
-  .join('\n');
+const urls = routes.map((r) => `  <url><loc>${siteUrl}/${r}</loc></url>`).join('\n');
 
 writeFileSync(
   join(outDir, 'sitemap.xml'),
