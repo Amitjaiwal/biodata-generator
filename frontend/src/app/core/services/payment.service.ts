@@ -31,6 +31,9 @@ type RazorpayCtor = new (options: Record<string, unknown>) => RazorpayInstance;
 
 const CHECKOUT_SRC = 'https://checkout.razorpay.com/v1/checkout.js';
 
+/** Google Ads "Purchase" conversion: tag ID and conversion label. Not secret; both appear in page source. */
+const GOOGLE_ADS_PURCHASE = 'AW-18584561813/-VYJCPq4ybsdEJXR551F';
+
 /** After this long without the payment window, show the "not opening?" hint. */
 const SLOW_AFTER_MS = 15_000;
 
@@ -83,12 +86,33 @@ export class PaymentService {
         ? await this.demoCheckout(order)
         : await this.razorpayCheckout(order, description, aborted);
       this.entitlements.add(grant);
+      // Only a server-verified, real payment counts as an ad conversion. Demo payments never do.
+      if (!order.demo) this.trackPurchase(order.amount, grant.paymentId);
       return grant;
     } finally {
       clearTimeout(slowTimer);
       this.abortPreparing = null;
       this.slow.set(false);
       this.phase.set('idle');
+    }
+  }
+
+  /**
+   * Tells Google Ads about a completed purchase. `amount` is in paise. The payment ID doubles as the
+   * transaction ID, so Google drops a duplicate if the same payment is ever reported twice.
+   * Never throws: tracking must not break a purchase.
+   */
+  private trackPurchase(amountPaise: number, paymentId: string): void {
+    try {
+      const gtag = (this.document.defaultView as unknown as { gtag?: (...args: unknown[]) => void } | null)?.gtag;
+      gtag?.('event', 'conversion', {
+        send_to: GOOGLE_ADS_PURCHASE,
+        value: amountPaise / 100,
+        currency: 'INR',
+        transaction_id: paymentId,
+      });
+    } catch {
+      // Ignore: an ad blocker or a missing tag must not affect the buyer.
     }
   }
 

@@ -75,8 +75,10 @@ const META: Record<LegalDoc, { title: string; description: string; path: string 
           <h2>Fonts and third parties</h2>
           <p>
             Fonts are loaded from Google Fonts, and the checkout is loaded from Razorpay when you choose to pay. These
-            providers receive standard technical information such as your IP address. We do not use advertising
-            trackers, and we do not sell or share personal data.
+            providers receive standard technical information such as your IP address. We also use the Google tag to
+            measure whether visitors who arrive from our Google Ads go on to buy a premium design. It may set
+            cookies for this purpose. We do not send your biodata details to Google, and we do not sell personal
+            data.
           </p>
 
           <h2>Children</h2>
